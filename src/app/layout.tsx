@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Bebas_Neue } from "next/font/google";
+import { Bebas_Neue, Roboto } from "next/font/google";
 import "./globals.css";
 import SmoothScrollProvider from "@/providers/smooth-scroll-provider";
 import Navbar from "@/components/shared/navbar";
@@ -14,10 +14,16 @@ const debata = Bebas_Neue({
   weight: ["400"],
   display: "swap",
 });
+const roboto = Roboto({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "700"],
+  display: "swap", 
+  variable: "--font-roboto"
+});
 
 export const metadata: Metadata = {
-  title: "Graphodio",
-  description: "The best agency for Web, Graphics and SEO services",
+  title: "Bayan Run",
+  description: "THE BIGGEST RUNNING EVENT IN KALIMANTAN",
 };
 
 export default function RootLayout({
