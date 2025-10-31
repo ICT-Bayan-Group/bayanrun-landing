@@ -42,7 +42,7 @@ export default function AboutSection() {
   return (
     <section
       ref={sectionRef}
-      className="lg:min-h-screen -mt-28 lg:mt-0 flex justify-center items-center text-white font-extralight px-4 pb-16 lg:py-0"
+      className="lg:min-h-screen -mt-28 lg:mt-0 flex justify-center items-center text-white font-extralight px-4 pb-16 lg:py-0 bg-blue-900"
     >
       <div className="text-center max-w-3xl">
         <p className="lg:text-5xl text-2xl lg:leading-snug mx-auto flex flex-wrap justify-center gap-3 text-center">

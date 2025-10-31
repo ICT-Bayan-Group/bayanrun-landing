@@ -222,5 +222,6 @@
 
   body {
     @apply bg-background text-foreground;
+     font-family: "Bebas Neue", sans-serif;
   }
 }

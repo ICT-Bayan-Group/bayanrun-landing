@@ -93,9 +93,9 @@ export default function Navbar() {
   );
 
   return (
-    <header className="!overflow-x-hidden relative z-[999]">
+    <header className="!overflow-x-hidden relative z-[999] bg-white">
       <nav className="py-3">
-        <div className="container text-white/40 text-lg">
+        <div className="container text-blue-900/40 text-lg">
           <div
             className="nav-wrapper flex justify-between items-center"
             ref={navRef}
@@ -106,7 +106,7 @@ export default function Navbar() {
                 <Image
                   src={
                     pathname === "/about"
-                      ? "/images/br-white.png"
+                      ? "/images/br.png"
                       : "/images/br.png"
                   }
                   alt="logo"
@@ -128,7 +128,7 @@ export default function Navbar() {
                   return (
                     <li
                       key={link.link}
-                      className={isActive ? "text-white" : ""}
+                      className={isActive ? "text-blue-900" : ""}
                     >
                       <Link href={link.link}>{link.name}</Link>
                     </li>
@@ -185,7 +185,7 @@ export default function Navbar() {
                       key={link.link}
                       href={link.link}
                       className={`text-2xl ${
-                        isActive ? "text-white" : "text-white/60"
+                        isActive ? "text-blue-900" : "text-blue-900/60"
                       }`}
                       onClick={toggleMobileMenu}
                     >
