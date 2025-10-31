@@ -1,0 +1,142 @@
+"use client";
+
+import { testimonials } from "@/lib/constant";
+import { useGSAP } from "@gsap/react";
+import gsap from "gsap";
+import ScrollTrigger from "gsap/ScrollTrigger";
+import { ArrowRightCircle, MessageCircle } from "lucide-react";
+import React, { useEffect, useRef, useState } from "react";
+import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
+
+gsap.registerPlugin(ScrollTrigger);
+
+export default function Testimonial() {
+    const secRef = useRef<HTMLElement | null>(null);
+    const [isLargeScreen, setIsLargeScreen] = useState(false);
+
+    // Detect screen size only on client
+    useEffect(() => {
+        if (typeof window !== "undefined") {
+            setIsLargeScreen(window.innerWidth >= 1024);
+        }
+    }, []);
+
+    useGSAP(
+        (context) => {
+            if (!isLargeScreen) return;
+
+            const q = context.selector;
+            if (!q) return;
+
+            const testimonialsElements = q(".fade_comment");
+            const stuckTextElement = q(".stuck_text");
+
+            // Pin the left text
+            if (stuckTextElement) {
+                gsap.to(stuckTextElement, {
+                    scrollTrigger: {
+                        trigger: secRef.current,
+                        start: "top 20%",
+                        end: "bottom 80%",
+                        pin: stuckTextElement,
+                        pinSpacing: false,
+                        scrub: 1,
+                    },
+                });
+            }
+
+            // Animate fade in and fade out on scroll
+            testimonialsElements?.forEach((element: HTMLElement) => {
+                // Fade in
+                gsap.to(element, {
+                    opacity: 1,
+                    scrollTrigger: {
+                        trigger: element,
+                        start: "top 55%",
+                        end: "top 30%",
+                        scrub: true,
+                    },
+                });
+
+                // Fade out
+                gsap.to(element, {
+                    opacity: 0.2,
+                    scrollTrigger: {
+                        trigger: element,
+                        start: "top 30%",
+                        end: "top top",
+                        scrub: true,
+                    },
+                });
+            });
+        },
+        { scope: secRef, dependencies: [isLargeScreen] }
+    );
+
+
+    return (
+        <section className="relative w-full py-8 lg:py-20" ref={secRef}>
+            <div className="container">
+                <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
+                    {/* Left sticky text - large screens only */}
+                    <div className="hidden lg:block lg:sticky lg:top-24 h-fit self-start">
+                        <p className="text-4xl sm:text-5xl lg:text-6xl leading-snug flex flex-wrap mt-2 stuck_text">
+                            <span>Kind words</span>
+                            <span className="inline-flex mt-2 justify-center items-center w-12 h-12 lg:w-14 lg:h-14 border-2 border-[#1b1b1b] rounded-full">
+                                <MessageCircle className="lg:w-6 lg:h-6 animate-bounce" />
+                            </span>
+                            <span>from peers, <br /> partners and clients</span>
+                        </p>
+                    </div>
+
+          
+                    {/* Mobile header */}
+                    <div className="lg:hidden mb-8 mx-auto">
+                        <p className="text-2xl leading-snug flex flex-wrap mt-2 text-center">
+                            <span>Kind words</span>
+                            <span className="inline-flex justify-center items-center w-8 h-8 border-2 border-[#1b1b1b] rounded-full">
+                                <MessageCircle className="w-3 h-3 animate-bounce" />
+                            </span>
+                            <span>from peers, partners and clients</span>
+                        </p>
+                    </div>
+
+                    {/* Testimonials */}
+                    <div className="space-y-12 lg:space-y-20">
+                        {testimonials.map((testimonial) => (
+                            <div key={testimonial.id}>
+                                <div className="fade_comment lg:opacity-20 flex items-start gap-3 lg:gap-5">
+                                    <div className="flex items-center gap-2 text-gray-400">
+                                        <ArrowRightCircle className="h-4 w-4 lg:h-5 lg:w-5" />
+                                        <span className="text-base lg:text-lg font-semibold font-[Roboto]">
+                                            {testimonial.id}
+                                        </span>
+                                    </div>
+                                    <div className="space-y-3 lg:space-y-5">
+                                        <h3 className="text-lg text-justify lg:text-start lg:text-xl tracking-wide font-medium leading-relaxed font-[Roboto]">
+                                            {testimonial.comment}
+                                        </h3>
+                                        <div className="flex items-center gap-3 lg:gap-4 font-[Roboto]">
+                                            <Avatar className='h-10 w-10 lg:h-12 lg:w-12'>
+                                                <AvatarImage src={testimonial.image} />
+                                                <AvatarFallback>{testimonial.name}</AvatarFallback>
+                                            </Avatar>
+                                            <div>
+                                                <h4 className="text-base lg:text-lg font-semibold">
+                                                    {testimonial.name}
+                                                </h4>
+                                                <p className="text-xs lg:text-sm text-gray-500">
+                                                    {testimonial.role}
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </div>
+        </section>
+    );
+}
