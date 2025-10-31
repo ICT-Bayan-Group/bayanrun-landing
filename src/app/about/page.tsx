@@ -1,11 +1,12 @@
 import AboutBanner from "@/components/about/about-banner";
 import AboutServices from "@/components/about/about-services";
+import AboutMissionVision from "@/components/about/AboutMissionVision";
 import Team from "@/components/about/team";
 import Testimonial from "@/components/about/testimonial";
 import WorksSection from "@/components/about/work-section";
 import LogoCarousel from "@/components/portfolio/LogoCarousel";
 import React from "react";
-import AboutMissionVision from "@/components/about/AboutMissionVision";
+
 
 export default function page() {
   return (
