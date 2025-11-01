@@ -9,16 +9,15 @@ import { Button } from "../ui/button";
 
 // Array gambar dari folder images
 const slideImages = [
-  "/images/slide-1.jpg",
-  "/images/slide-2.jpg",
-  "/images/slide-3.jpg",
-  "/images/slide-4.jpg",
-  "/images/slide-5.jpg",
-  "/images/slide-6.jpg",
-  "/images/slide-7.jpg",
-  "/images/slide-8.jpg",
-  "/images/slide-9.jpg",
-  "/images/slide-10.jpg",
+ "https://drive.google.com/uc?export=view&id=19ldCPknuViZSShI7f4CKGa7BM_WRbIBQ",
+  "https://drive.google.com/uc?export=view&id=1j5wRlbFmqCq3LsmlNG_5XTHixjy9w2nt",
+  "https://drive.google.com/uc?export=view&id=1j5wRlbFmqCq3LsmlNG_5XTHixjy9w2nt",
+  "https://drive.google.com/uc?export=view&id=1j5wRlbFmqCq3LsmlNG_5XTHixjy9w2nt",
+  "https://drive.google.com/uc?export=view&id=1j5wRlbFmqCq3LsmlNG_5XTHixjy9w2nt",
+  "https://drive.google.com/uc?export=view&id=1j5wRlbFmqCq3LsmlNG_5XTHixjy9w2nt",
+  "https://drive.google.com/uc?export=view&id=1j5wRlbFmqCq3LsmlNG_5XTHixjy9w2nt",
+  "https://drive.google.com/uc?export=view&id=1j5wRlbFmqCq3LsmlNG_5XTHixjy9w2nt",
+  "https://drive.google.com/uc?export=view&id=1j5wRlbFmqCq3LsmlNG_5XTHixjy9w2nt",
 ];
 
 export default function StackedSlider() {
@@ -71,8 +70,8 @@ export default function StackedSlider() {
       <div className="container">
         <div className="pb-10 lg:max-w-6xl lg:px-40 mx-auto">
           <p className="lg:text-5xl text-xl leading-5 text-justify lg:leading-snug mx-auto flex flex-wrap justify-center gap-3 ">
-            <span className="animate-group">OUR</span>
-            <span className="animate-group">GALLERY</span>
+            <span className="animate-group text-amber-500">OUR</span>
+            <span className="animate-group text-amber-500">GALLERY</span>
           </p>
 
           <div className="animate-group mt-8 flex justify-center">

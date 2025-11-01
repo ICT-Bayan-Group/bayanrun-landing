@@ -1,6 +1,6 @@
 /** @type {import('next-sitemap').IConfig} */
 module.exports = {
-  siteUrl: 'https://graphodio.com/', 
+  siteUrl: 'https://bayanrun.com/', 
   generateRobotsTxt: true, 
   changefreq: 'daily',
   priority: 0.7,

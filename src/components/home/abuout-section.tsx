@@ -60,7 +60,7 @@ export default function AboutSection() {
           style={{ fontFamily: "Roboto, sans-serif" }}
         >
           <Link href="/about">
-            <Button className="group w-24 lg:w-28 h-11 lg:h-12 flex items-center gap-4 lg:gap-5 text-base lg:text-lg border-2 border-[#1b1b1b] bg-[#1d1d1d]/30">
+            <Button className="group w-24 lg:w-28 h-11 lg:h-12 flex items-center gap-4 lg:gap-5 text-base lg:text-lg border-2 border-[#ffffff] hover:bg-white/20 bg-white/10 backdrop-blur-sm">
               <User className="w-6 h-6 lg:w-7 lg:h-7 rounded-full group-hover:p-0" />
               <span>About</span>
             </Button>
