@@ -141,9 +141,9 @@ export default function Navbar() {
             <div className="contact-animate invisible hidden lg:block">
               <Button
                 onClick={() => setIsContactOpen(true)}
-                className={`uppercase border border-white/20 ${
+                className={`bg-amber-600 uppercase border border-white/20 ${
                   pathname === "/about"
-                    ? "bg-white text-black hover:bg-white/80"
+                    ? "bg-white text-blue-900 hover:bg-white/80"
                     : ""
                 } text-lg cursor-pointer`}
               >

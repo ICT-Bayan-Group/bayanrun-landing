@@ -64,11 +64,11 @@ export default function HowWeWork() {
 
   return (
     <section
-      className="lg:h-screen flex justify-center items-center relative hwww"
+      className="lg:h-screen flex justify-center items-center relative bg-blue-900 overflow-hidden"
       ref={sectionRef}
     >
       <div className="container text-white text-center lg:-mt-32 mt-[130px]">
-        <h2 className="lg:text-[64px] text-4xl font-bold leading-tight text-center pb-12 max-w-2xl mx-auto">
+        <h2 className="lg:text-[64px] text-4xl text-red-600 font-bold leading-tight text-center pb-12 max-w-2xl mx-auto">
           BAYAN RUN CATEGORY
         </h2>
 
@@ -88,7 +88,7 @@ export default function HowWeWork() {
                 cx="50%"
                 cy="50%"
                 r="90"
-                stroke="#1b1b1b"
+                stroke="#fdca00ff"
                 strokeWidth="2"
                 fill="transparent"
                 strokeDasharray="565.48"
@@ -110,7 +110,7 @@ export default function HowWeWork() {
                 cx="50%"
                 cy="50%"
                 r="90"
-                stroke="#1b1b1b"
+                stroke="#fdca00ff"
                 strokeWidth="2"
                 fill="transparent"
               />
@@ -149,7 +149,7 @@ export default function HowWeWork() {
                 cx="50%"
                 cy="50%"
                 r="90"
-                stroke="#1b1b1b"
+                stroke="#fdca00ff"
                 strokeWidth="2"
                 fill="transparent"
                 strokeDasharray="565.48"
