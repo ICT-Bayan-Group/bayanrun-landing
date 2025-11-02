@@ -94,7 +94,7 @@ const Footer: React.FC = () => {
                         {/* Sitemap & Copyright */}
                         <div className="flex flex-col space-y-6 max-md:items-center max-md:text-center font-[Roboto]">
                             <div className="flex flex-col">
-                                <span className="uppercase text-gray-500 tracking-widest mb-2">Sitemap</span>
+                                <span className="uppercase text-gray-500 font-extrabold tracking-widest mb-2">Menu</span>
                                 <Link href="/" className="hover:underline">Home</Link>
                                 <Link href="/portfolio" className="hover:underline">Works</Link>
                                 <Link href="/policy" className="hover:underline">Privacy Policy</Link>
@@ -103,26 +103,25 @@ const Footer: React.FC = () => {
                                 <Link href="/about" className="hover:underline">About</Link>
                                 <p className="cursor-pointer hover:underline" onClick={() => setIsContactOpen(true)}>Contact</p>
                             </div>
-                            <p className="text-gray-500 text-xs">Graphodio © 2025</p>
+                            <p className="text-gray-500 text-sm">© 2025 PT Bayan Resources Tbk </p>
                         </div>
 
                         {/* Social Links & Infos */}
                         <div className="flex flex-col items-end max-md:items-center max-md:text-center">
                             <div className="flex items-center space-x-4 mb-4">
-                                <SocialLink href="https://www.linkedin.com/company/graphodio360/ " label="LinkedIn" Icon={FaLinkedin} />
-                                <SocialLink href="https://www.facebook.com/Graphodio360" label="Facebook" Icon={FaFacebook} />
-                                <SocialLink href="https://www.instagram.com/graphodio360/" label="Instagram" Icon={FaInstagram} />
-                                <SocialLink href="https://api.whatsapp.com/send/?phone=8801782060008&text&type=phone_number&app_absent=0" label="whatsapp" Icon={FaWhatsapp} />
+                                <SocialLink href="https://id.linkedin.com/company/pt-bayan-resources-tbk " label="LinkedIn" Icon={FaLinkedin} />
+                                <SocialLink href="https://www.instagram.com/bayan_open/" label="Instagram" Icon={FaInstagram} />
+                                <SocialLink href="https://api.whatsapp.com/send/?phone=6282154815113&text&type=phone_number&app_absent=0" label="whatsapp" Icon={FaWhatsapp} />
                             </div>
-                            <Link href="/infos" className="hover:underline text-xs font-[Roboto]">
-                                Infos & Credits
+                            <Link href="/infos" className="hover:underline text-xs font-[Roboto] font-bold">
+                                Social Media 
                             </Link>
                         </div>
                     </div>
 
                     {/* Logo with interactive animation */}
                     <div className="flex-1 flex justify-end ml-6 mt-6 md:mt-0 max-md:justify-center max-md:ml-0">
-                        <div className="w-32 md:w-48 h-32 md:h-48 relative group">
+                        <div className="w-35 md:w-50 h-35 md:h-50 relative group">
                             <Image
                                 src="/images/br.png"
                                 alt="Logo"

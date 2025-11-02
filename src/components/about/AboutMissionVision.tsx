@@ -83,7 +83,7 @@ export default function AboutMissionVision() {
     <section
       ref={rootRef}
       id="about-mission-vision"
-      className="relative w-full bg-black text-white"
+      className="relative w-full bg-white text-blue-900"
       aria-label="About Mission Vision"
     >
       {/* Subtle grid bg */}
@@ -93,7 +93,7 @@ export default function AboutMissionVision() {
 
       {/* Watermark */}
      <div className="amv-watermark pointer-events-none absolute top-12 sm:top-16 md:top-20 lg:top-24 select-none opacity-10 mix-blend-screen w-full flex justify-center">
-  <span className="block text-[6rem] sm:text-[12rem] md:text-[16rem] lg:text-[22rem] leading-none font-black tracking-tighter text-white/80 text-center">
+  <span className="block text-[6rem] sm:text-[12rem] md:text-[16rem] lg:text-[22rem] leading-none font-blue tracking-tighter text-blue text-center">
     BAYAN RUN
   </span>
 </div>
@@ -116,25 +116,9 @@ export default function AboutMissionVision() {
                   <h2 className="amv-heading font-extrabold leading-[0.95] tracking-tight text-4xl md:text-6xl">
                     {item.heading}
                   </h2>
-                  <p className="amv-body mt-5 max-w-xl text-xl/relaxed md:text-base/relaxed text-white/80 font-[Roboto]">
+                  <p className="amv-body mt-5 max-w-xl text-xl/relaxed md:text-base/relaxed text-black/80 font-semibold font-[Roboto]">
                     {item.body}
                   </p>
-
-                  <div className="amv-body mt-6 flex flex-wrap gap-3">
-                    <Link
-                      href="/portfolio"
-                      className="rounded-2xl border border-white/15 px-4 py-2 text-xs uppercase tracking-wide transition-all hover:bg-white hover:text-black"
-                    >
-                      Explore Services
-                    </Link>
-                    <Link
-                      href="/portfolio"
-                      className="rounded-2xl border border-white/15 px-4 py-2 text-xs uppercase tracking-wide transition-all hover:bg-white hover:text-black"
-                    >
-                      View Works
-                    </Link>
-                    
-                  </div>
                 </div>
 
                 {/* LEFT (badges box) */}
@@ -165,7 +149,7 @@ export default function AboutMissionVision() {
                   <h2 className="amv-heading font-extrabold leading-[0.95] tracking-tight text-4xl md:text-6xl">
                     {item.heading}
                   </h2>
-                  <p className="amv-body mt-5 max-w-xl text-lg/relaxed md:text-base/relaxed text-white/80">
+                  <p className="amv-body mt-5 max-w-xl text-lg/relaxed md:text-base/relaxed text-black/80 font-semibold font-[Roboto]">
                     {item.body}
                   </p>
                 </div>
@@ -262,7 +246,7 @@ function Badge({ label, className = "" }: { label: string; className?: string })
     <div
       ref={ref}
       className={`absolute select-none rounded-2xl border border-white/15 bg-white/10 
-      px-3 py-1 text-[10px] uppercase tracking-wider text-white/90 shadow-md backdrop-blur 
+      px-3 py-1 text-[10px] uppercase tracking-wider text-black/90 shadow-md backdrop-blur 
       transition-transform duration-300 hover:scale-110 hover:bg-white/20 ${className}`}
     >
       {label}
