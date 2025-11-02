@@ -2,8 +2,9 @@
 export const navLinks = [
   { name: "Home", link: "/" },
   { name: "About", link: "/about" },
-  { name: "Portfolio", link: "/portfolio" },
-  { name: "Blog", link: "/blog" },
+  { name: "Schedule & Rules", link: "/schedule-rules" },
+ // { name: "Portfolio", link: "/portfolio" },
+ // { name: "Blog", link: "/blog" },
 ];
 
 // Services
@@ -50,56 +51,59 @@ export const services = [
 export const testimonials = [
   {
     id: 1,
-    name: "Steve Christmas",
-    role: "CEO, Good Vibes Music Academy",
+    name: "Dina Kartika Sari",
+    role: "Pegawai Swasta & Running Enthusiast",
     comment:
-      "This has been a really positive and professional experience. Graphodio made adaptations as requested as well as offering their own professional advice and options which was much appreciated and valued.They supplied different versions of the logo, banner and other required files that can be used online, print material and on social media too. Would recommend Graphodio and wouldn’t be hesitate in working with them again in the future.",
-    image: "/images/steve.png",
+      "Bayan Run adalah event lari terbaik yang pernah saya ikuti! Rutenya melewati keindahan alam Balikpapan yang luar biasa. Organisasinya sangat profesional dan suasananya sangat mendukung para pelari pemula seperti saya. Panitia sangat responsif dan membantu di setiap pos. Tahun depan saya pasti ikut lagi!",
+    image: "/images/dina.jpg",
   },
   {
     id: 2,
-    name: "Nada",
-    role: "Owner, Droplets Attire",
+    name: "Rizky Permana",
+    role: "Atlet Lari & Pelatih Olahraga",
     comment:
-      "Such a creative, thoughtful and attentive team. They gave me all the files we altered, and they were so patient and helpful. Highly recommended.",
-    image: "/images/Nada.jpg",
+      "Sebagai pelari rutin, saya sangat menghargai bagaimana Bayan Run menggabungkan olahraga dengan pelestarian lingkungan. Setiap kilometer yang kita tempuh memberi kontribusi untuk penghijauan kota. Ini bukan sekadar lari, tapi gerakan positif untuk Balikpapan!",
+    image: "/images/rizky.jpg",
   },
   {
     id: 3,
-    name: "Rowan Anderson",
-    role: "CEO,Far & King Framing",
-    comment: "Great work. always great to work with.",
-    image: "/images/rowan.png",
+    name: "Sari Wijayanti",
+    role: "Founder, Balikpapan Runners Club",
+    comment:
+      "Bayan Run sukses menyatukan komunitas lari di Balikpapan. Event ini memberikan platform yang sempurna untuk bersosialisasi sambil berolahraga. Medalinya juga keren sekali!",
+    image: "/images/sari.jpg",
   },
   {
     id: 4,
-    name: "Tareq",
-    role: "COO,Dessert Pots",
+    name: "Budi Santoso",
+    role: "Guru SMA Negeri 5 Balikpapan",
     comment:
-      "Skillful, talented and fast delivery. This is my 5th time working with them and will continue with them also.",
-    image: "/images/tareq.png",
+      "Pertama kali ikut fun run dan memilih Bayan Run adalah keputusan terbaik. Panitia sangat membantu, ada banyak pos hidrasi, dan finisher pack-nya lengkap. Pengalaman yang luar biasa menyenangkan!",
+    image: "/images/budi.jpg",
   },
   {
     id: 5,
-    name: "Mehedi Hasan",
-    role: "DGM, Brand & Marketing, Sanmar Properties Limited",
+    name: "Maya Lestari Putri",
+    role: "Content Creator & Health Advocate",
     comment:
-      "Having worked with Graphodio on projects with tight deadlines, I can attest to their dedication and passion for work. They consistently demonstrates honesty and a commitment to delivering high-quality results, even on short notice. Their responsiveness and reliability are especially valuable in today’s market. I wish them great success and I look forward to continuing our collaboration. Thank you!",
-    image: "/images/mehedi.png",
+      "Bayan Run bukan hanya tentang berlari, tapi tentang membangun gaya hidup sehat bersama komunitas. Saya sudah mengikuti event ini 3 kali dan selalu ada inovasi baru yang membuat setiap tahun lebih menarik. Dokumentasi dan live coverage-nya juga sangat profesional. Terima kasih Bayan Run!",
+    image: "/images/maya.jpg",
   },
   {
     id: 6,
-    name: "Dr. Graham Forbes",
-    role: "CEO,Capital Dental Design",
-    comment: "Prompt and efficient with alterations!",
-    image: "/images/Graham.png",
+    name: "Arief Budiman",
+    role: "Regional Manager, PT Kaltim Prima Coal",
+    comment:
+      "Sebagai sponsor, kami melihat Bayan Run sebagai event yang berdampak positif bagi masyarakat. Antusiasme peserta sangat tinggi dan ini adalah investasi yang tepat!",
+    image: "/images/arief.jpg",
   },
   {
     id: 7,
-    name: "Daniel Constantin",
-    role: "CEO,SHR Motors",
-    comment: "Very understanding and very quick. I recommend them.",
-    image: "/images/daniel.png",
+    name: "Fajar Ramadhan",
+    role: "Pengusaha & Marathon Runner",
+    comment:
+      "Event yang sangat terorganisir dengan baik. Rute yang menantang tapi aman, dan timing system yang akurat. Sangat direkomendasikan untuk semua kalangan!",
+    image: "/images/fajar.jpg",
   },
 ];
 

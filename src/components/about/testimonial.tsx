@@ -75,17 +75,14 @@ export default function Testimonial() {
 
 
     return (
-        <section className="relative w-full py-8 lg:py-20" ref={secRef}>
+        <section className="relative bg-blue-900 w-full py-8 lg:py-20" ref={secRef}>
             <div className="container">
                 <div className="grid grid-cols-1 lg:grid-cols-2 gap-8">
                     {/* Left sticky text - large screens only */}
                     <div className="hidden lg:block lg:sticky lg:top-24 h-fit self-start">
                         <p className="text-4xl sm:text-5xl lg:text-6xl leading-snug flex flex-wrap mt-2 stuck_text">
-                            <span>Kind words</span>
-                            <span className="inline-flex mt-2 justify-center items-center w-12 h-12 lg:w-14 lg:h-14 border-2 border-[#1b1b1b] rounded-full">
-                                <MessageCircle className="lg:w-6 lg:h-6 animate-bounce" />
-                            </span>
-                            <span>from peers, <br /> partners and clients</span>
+                        <span>Mereka berlari,</span>
+                        <span>mereka bercerita <br /> tentang Bayan Run</span>
                         </p>
                     </div>
 

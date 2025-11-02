@@ -3,6 +3,7 @@ import AboutServices from "@/components/about/about-services";
 import AboutMissionVision from "@/components/about/AboutMissionVision";
 import Team from "@/components/about/team";
 import Testimonial from "@/components/about/testimonial";
+import Achievement from "@/components/about/achivement";
 import WorksSection from "@/components/about/work-section";
 import LogoCarousel from "@/components/portfolio/LogoCarousel";
 import React from "react";
@@ -12,13 +13,12 @@ export default function page() {
   return (
     <main>
       <AboutBanner />
-      <AboutServices />
       <AboutMissionVision />
       <div className="py-2 lg:py-20">
-        <LogoCarousel />
+        <Achievement />
       </div>
       <Testimonial />
-      <Team />
+
       <WorksSection />
     </main>
   );

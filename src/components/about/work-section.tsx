@@ -1,380 +1,355 @@
 "use client";
 
-import { works } from "@/lib/constant";
-import { slugify } from "@/lib/utils";
+import { Building2, Award, Clock, MapPin, Users, AlertCircle, CheckCircle } from "lucide-react";
+import React, { useRef } from "react";
 import gsap from "gsap";
-import { Building2 } from "lucide-react";
-import Link from "next/link";
-import React, { useRef, useEffect, useState } from "react";
 
-export default function WorksSection() {
+const categories = [
+  {
+    title: "Half Marathon (21K)",
+    age: "17+ tahun",
+    cutoff: "4 jam",
+    tags: ["Nasional", "Medal", "Finisher Shirt"]
+  },
+  {
+    title: "10K Run",
+    age: "17+ tahun",
+    cutoff: "2 jam",
+    tags: ["Nasional", "Medal"]
+  },
+  {
+    title: "5K Run",
+    age: "17+ tahun",
+    cutoff: "1 jam",
+    tags: ["Nasional", "Medal"]
+  },
+  {
+    title: "5K Teenagers",
+    age: "13-16 tahun",
+    cutoff: "1 jam",
+    tags: ["Remaja", "Medal"]
+  },
+  {
+    title: "2.5K Kids",
+    age: "6-12 tahun",
+    cutoff: "50 menit",
+    tags: ["Anak-anak", "Medal"]
+  }
+];
+
+const importantRules = [
+  {
+    icon: AlertCircle,
+    title: "Non-Refundable",
+    desc: "Biaya pendaftaran tidak dapat dikembalikan"
+  },
+  {
+    icon: Users,
+    title: "Verifikasi Usia",
+    desc: "Penyelenggara berhak memverifikasi usia peserta"
+  },
+  {
+    icon: CheckCircle,
+    title: "Hanya RegNowOnline",
+    desc: "Pendaftaran hanya melalui website resmi"
+  },
+  {
+    icon: Clock,
+    title: "Cut-Off Time",
+    desc: "Peserta wajib finish sebelum waktu COT"
+  }
+];
+
+export default function BayanRunInfo() {
   const containerRef = useRef<HTMLDivElement>(null);
-  const preloadedVideos = useRef<{ [key: string]: HTMLVideoElement }>({});
-  const [videosLoaded, setVideosLoaded] = useState<{ [key: string]: boolean }>({});
-
-  // Filter about page works
-  const aboutPageWorks = works.filter((work) => work.about);
-
-  // Preload all videos in the background
-  useEffect(() => {
-    const preloadVideos = () => {
-      let loadedCount = 0;
-      const totalVideos = aboutPageWorks.reduce((acc, work) => acc + Math.min(work.videos.length, 3), 0);
-
-      aboutPageWorks.forEach((work, workIndex) => {
-        work.videos.slice(0, 3).forEach((videoSrc, videoIndex) => {
-          const video = document.createElement("video");
-          video.preload = "metadata";
-          video.muted = true;
-          video.loop = true;
-          video.playsInline = true;
-
-          // Store reference with a unique key
-          const key = `${workIndex}-${videoIndex}`;
-          preloadedVideos.current[key] = video;
-
-          const handleLoad = () => {
-            loadedCount++;
-            setVideosLoaded(prev => ({ ...prev, [key]: true }));
-
-            if (loadedCount === totalVideos) {
-              console.log('All work videos preloaded');
-            }
-          };
-
-          video.addEventListener('loadeddata', handleLoad);
-          video.addEventListener('error', handleLoad);
-
-          // Set source and start loading
-          video.src = videoSrc;
-          video.load();
-        });
-      });
-    };
-
-    preloadVideos();
-
-    // Cleanup function
-    return () => {
-      Object.values(preloadedVideos.current).forEach((video) => {
-        video.src = "";
-        video.load();
-      });
-      preloadedVideos.current = {};
-    };
-  }, [aboutPageWorks]);
-
-  // Check if all videos for a work are loaded
-  const areWorkVideosLoaded = (workIndex: number): boolean => {
-    return aboutPageWorks[workIndex].videos.slice(0, 3).every((_, videoIndex) => {
-      const key = `${workIndex}-${videoIndex}`;
-      return videosLoaded[key] === true;
-    });
-  };
 
   const handleShow = (el: HTMLElement) => {
-    const items = containerRef.current?.querySelectorAll(".work-item") || [];
-
+    const items = containerRef.current?.querySelectorAll(".category-item") || [];
+    
     items.forEach((item) => {
       if (item !== el) {
         gsap.to(item, {
-          opacity: 0.1,
-          duration: 0.2,
+          opacity: 0.3,
+          duration: 0.3,
           ease: "power3.out",
         });
       }
     });
 
-    const videos = el.querySelectorAll(
-      ".abc video"
-    ) as NodeListOf<HTMLVideoElement>;
-    videos.forEach((video) => {
-      gsap.killTweensOf(video.parentElement);
-      gsap.to(video.parentElement, {
-        scale: 1,
-        opacity: 1,
-        duration: 0.2,
-        ease: "power3.out",
-      });
-
-      // Ensure video plays when shown
-      video.play().catch(console.error);
+    gsap.to(el, {
+      scale: 1.05,
+      duration: 0.3,
+      ease: "power3.out",
     });
   };
 
   const handleHide = (el: HTMLElement) => {
-    const items = containerRef.current?.querySelectorAll(".work-item") || [];
-
+    const items = containerRef.current?.querySelectorAll(".category-item") || [];
+    
     items.forEach((item) => {
       gsap.to(item, {
         opacity: 1,
-        duration: 0.2,
+        duration: 0.3,
         ease: "power2.out",
       });
     });
 
-    const videos = el.querySelectorAll(
-      ".abc video"
-    ) as NodeListOf<HTMLVideoElement>;
-    videos.forEach((video) => {
-      gsap.killTweensOf(video.parentElement);
-      gsap.to(video.parentElement, {
-        scale: 0,
-        opacity: 0,
-        duration: 0.3,
-        ease: "power3.in",
-      });
-
-      // Pause video when hidden to save resources
-      video.pause();
+    gsap.to(el, {
+      scale: 1,
+      duration: 0.3,
+      ease: "power2.out",
     });
   };
 
-  const getPreloadedVideo = (
-    workIndex: number,
-    videoIndex: number
-  ): HTMLVideoElement | null => {
-    const key = `${workIndex}-${videoIndex}`;
-    return preloadedVideos.current[key] || null;
-  };
-
-  // Video Skeleton Component
-  const VideoSkeleton = ({ className = "" }: { className?: string }) => (
-    <div className={`relative overflow-hidden bg-gradient-to-br from-gray-800 to-gray-900 rounded-lg ${className}`}>
-      <div className="absolute inset-0 bg-gradient-to-r from-transparent via-gray-700/20 to-transparent -translate-x-full animate-[shimmer_1.5s_infinite]"></div>
-      <div className="flex items-center justify-center h-full">
-        <div className="w-6 h-6 border-2 border-gray-600 border-t-white rounded-full animate-spin"></div>
-      </div>
-    </div>
-  );
-
-  // Desktop Work Item Skeleton
-  const DesktopWorkSkeleton = () => (
-    <div className="grid grid-cols-6 items-center gap-5 group work-item opacity-50 pointer-events-none">
-      {/* Video 1 Skeleton */}
-      <div className="col-span-1">
-        <VideoSkeleton className="aspect-square" />
-      </div>
-
-      {/* Video 2 Skeleton */}
-      <div className="col-span-1">
-        <VideoSkeleton className="aspect-square" />
-      </div>
-
-      {/* Title & Info Skeleton */}
-      <div className="col-span-3 relative">
-        <div className="h-20 bg-gradient-to-r from-gray-800 to-gray-700 rounded-lg relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-gray-700/20 to-transparent -translate-x-full animate-[shimmer_1.5s_infinite]"></div>
-        </div>
-        <div className="absolute left-0 -bottom-5 flex items-center gap-1">
-          {[1, 2, 3].map((idx) => (
-            <div
-              key={idx}
-              className="h-4 bg-gradient-to-r from-gray-800 to-gray-700 rounded-xs w-16 relative overflow-hidden"
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-gray-700/20 to-transparent -translate-x-full animate-[shimmer_1.5s_infinite]"></div>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* Video 3 Skeleton */}
-      <div className="col-span-1">
-        <VideoSkeleton className="aspect-square" />
-      </div>
-    </div>
-  );
-
-  // Mobile Work Skeleton
-  const MobileWorkSkeleton = () => (
-    <div className="space-y-3">
-      <div className="grid grid-cols-3 gap-3">
-        {[1, 2, 3].map((idx) => (
-          <VideoSkeleton key={idx} className="aspect-square" />
-        ))}
-      </div>
-      <div className="text-center">
-        <div className="h-6 bg-gradient-to-r from-gray-800 to-gray-700 rounded-lg relative overflow-hidden w-3/4 mx-auto mb-2">
-          <div className="absolute inset-0 bg-gradient-to-r from-transparent via-gray-700/20 to-transparent -translate-x-full animate-[shimmer_1.5s_infinite]"></div>
-        </div>
-        <div className="flex justify-center gap-2">
-          {[1, 2].map((idx) => (
-            <div
-              key={idx}
-              className="h-3 bg-gradient-to-r from-gray-800 to-gray-700 rounded-xs w-12 relative overflow-hidden"
-            >
-              <div className="absolute inset-0 bg-gradient-to-r from-transparent via-gray-700/20 to-transparent -translate-x-full animate-[shimmer_1.5s_infinite]"></div>
-            </div>
-          ))}
-        </div>
-      </div>
-    </div>
-  );
-
   return (
-    <section className="py-8 lg:pb-20 lg:-mt-96">
-      <div className="container">
-        <div className="flex justify-between">
-          <div className="max-w-md mx-auto lg:mx-0">
-            <h3 className="lg:text-5xl text-2xl leading-snug text-center lg:text-start">
-              Here is a selection of our most popular works{" "}
-              <span className="inline-flex justify-center items-center lg:w-14 lg:h-14 w-10 h-10 border-2 border-[#1b1b1b] rounded-full lg:ml-3">
-                <Building2 className="lg:w-6 lg:h-6 w-4 h-4 animate-bounce" />
-              </span>
-            </h3>
+    <div className="min-h-screen bg-black text-white py-12 px-4">
+      <div className="container mx-auto max-w-7xl">
+        {/* Header */}
+        <div className="text-center mb-16">
+          <div className="inline-flex items-center gap-3 mb-6">
+            <div className="w-16 h-16 border-2 border-white rounded-full flex items-center justify-center">
+              <Building2 className="w-8 h-8 animate-bounce" />
+            </div>
           </div>
-          <div className="max-w-[150px] text-end items-end hidden lg:block font-[Roboto]">
-            <p className="lg:text-xl text-white/70">
-              Hover on names for a closer look
-            </p>
+          <h1 className="text-5xl lg:text-7xl font-bold mb-4">BAYAN RUN</h1>
+          <p className="text-xl text-white/70">Informasi & Ketentuan Lomba</p>
+        </div>
+
+        {/* Important Notice */}
+        <div className="bg-gradient-to-br from-red-900/30 to-red-950/30 border-2 border-red-500/50 rounded-2xl p-8 mb-16">
+          <div className="flex items-start gap-4 mb-6">
+            <AlertCircle className="w-8 h-8 text-red-500 flex-shrink-0 mt-1" />
+            <div>
+              <h2 className="text-3xl font-bold mb-4 text-red-400">PENTING!</h2>
+              <p className="text-lg leading-relaxed">
+                Peserta wajib membaca, memahami, dan mematuhi segala Informasi Penting, Syarat dan Ketentuan dan Peraturan Lomba secara seksama sebelum mengikuti lomba. Syarat, Ketentuan dan Peraturan Lomba dibuat untuk menciptakan perlombaan yang sistematis dan teratur, memastikan keselamatan untuk seluruh pihak yang terlibat, terutama keselamatan peserta lomba.
+              </p>
+            </div>
           </div>
         </div>
 
-        <div
-          className="lg:flex flex-col justify-center mt-12 hidden"
-          ref={containerRef}
-        >
-          {aboutPageWorks.map((work, index) => (
-            <React.Fragment key={index}>
-              {!areWorkVideosLoaded(index) ? (
-                <DesktopWorkSkeleton />
-              ) : (
-                <Link href={`/portfolio/${slugify(work.title)}`}>
-                  <div
-                    className="grid grid-cols-6 items-center gap-5 group work-item transition-opacity duration-300"
-                    onMouseEnter={(e) => handleShow(e.currentTarget)}
-                    onMouseLeave={(e) => handleHide(e.currentTarget)}
-                  >
-                    {/* Video 1 */}
-                    <div
-                      className="col-span-1 abc"
-                      style={{ transform: "scale(0)", opacity: 0 }}
-                    >
-                      <video
-                        autoPlay={false}
-                        preload="auto"
-                        loop
-                        muted
-                        playsInline
-                        onLoadedData={(e) => {
-                          // Sync with preloaded video if available
-                          const preloaded = getPreloadedVideo(index, 0);
-                          if (preloaded && preloaded.readyState >= 3) {
-                            e.currentTarget.currentTime = preloaded.currentTime;
-                          }
-                        }}
-                      >
-                        <source src={work.videos[0]} type="video/mp4" />
-                      </video>
-                    </div>
+        {/* Key Rules Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-16">
+          {importantRules.map((rule, idx) => (
+            <div key={idx} className="bg-gradient-to-br from-gray-900 to-gray-950 border border-white/10 rounded-xl p-6 hover:border-white/30 transition-all duration-300">
+              <rule.icon className="w-10 h-10 mb-4 text-blue-400" />
+              <h3 className="text-lg font-bold mb-2">{rule.title}</h3>
+              <p className="text-sm text-white/60">{rule.desc}</p>
+            </div>
+          ))}
+        </div>
 
-                    {/* Video 2 */}
-                    <div
-                      className="col-span-1 abc"
-                      style={{ transform: "scale(0)", opacity: 0 }}
-                    >
-                      <video
-                        autoPlay={false}
-                        preload="auto"
-                        loop
-                        muted
-                        playsInline
-                        onLoadedData={(e) => {
-                          const preloaded = getPreloadedVideo(index, 1);
-                          if (preloaded && preloaded.readyState >= 3) {
-                            e.currentTarget.currentTime = preloaded.currentTime;
-                          }
-                        }}
-                      >
-                        <source src={work.videos[1]} type="video/mp4" />
-                      </video>
-                    </div>
-
-                    {/* Title & Info */}
-                    <div className="col-span-3 relative cursor-pointer origin-left will-change-transform hover:scale-[120%] hover:translate-x-5 duration-700 group">
-                      <h3 className="lg:text-8xl font-bold">{work.title}</h3>
-                      <div className="absolute text-white/70 left-0 -bottom-5 flex items-center gap-1">
-                        {work.tags.map((tag, idx) => (
-                          <span
-                            key={idx}
-                            className="invisible group-hover:visible mt-1 text-xs bg-[#1b1b1b] tracking-wider px-2 rounded-xs"
-                          >
-                            {tag}
-                          </span>
-                        ))}
-                      </div>
-                    </div>
-
-                    {/* Video 3 */}
-                    <div
-                      className="col-span-1 abc"
-                      style={{ transform: "scale(0)", opacity: 0 }}
-                    >
-                      <video
-                        autoPlay={false}
-                        preload="auto"
-                        loop
-                        muted
-                        playsInline
-                        onLoadedData={(e) => {
-                          const preloaded = getPreloadedVideo(index, 2);
-                          if (preloaded && preloaded.readyState >= 3) {
-                            e.currentTarget.currentTime = preloaded.currentTime;
-                          }
-                        }}
-                      >
-                        <source src={work.videos[2]} type="video/mp4" />
-                      </video>
+        {/* Categories Section */}
+        <div className="mb-16">
+          <div className="flex items-center justify-between mb-8">
+            <h2 className="text-4xl lg:text-5xl font-bold">Kategori Lomba</h2>
+            <Award className="w-12 h-12 text-yellow-500" />
+          </div>
+          
+          <div className="hidden lg:block" ref={containerRef}>
+            <div className="space-y-6">
+              {categories.map((category, index) => (
+                <div
+                  key={index}
+                  className="category-item grid grid-cols-12 items-center gap-6 bg-gradient-to-r from-gray-900 to-gray-950 border border-white/10 rounded-2xl p-8 cursor-pointer transition-all duration-300"
+                  onMouseEnter={(e) => handleShow(e.currentTarget)}
+                  onMouseLeave={(e) => handleHide(e.currentTarget)}
+                >
+                  <div className="col-span-5">
+                    <h3 className="text-4xl font-bold mb-2">{category.title}</h3>
+                    <div className="flex items-center gap-4 text-white/60">
+                      <span className="flex items-center gap-2">
+                        <Users className="w-4 h-4" />
+                        {category.age}
+                      </span>
+                      <span className="flex items-center gap-2">
+                        <Clock className="w-4 h-4" />
+                        COT: {category.cutoff}
+                      </span>
                     </div>
                   </div>
-                </Link>
-              )}
-            </React.Fragment>
-          ))}
-        </div>
-
-        {/* Small Device Works */}
-        <div className="lg:hidden space-y-10 lg:pt-12 pt-6">
-          {aboutPageWorks.map((work, index) => (
-            <div key={index}>
-              {!areWorkVideosLoaded(index) ? (
-                <MobileWorkSkeleton />
-              ) : (
-                <>
-                  <div className="grid grid-cols-3 gap-3">
-                    {work.videos.slice(0, 3).map((video, idx) => (
-                      <video
+                  
+                  <div className="col-span-7 flex items-center justify-end gap-2">
+                    {category.tags.map((tag, idx) => (
+                      <span
                         key={idx}
-                        autoPlay
-                        preload="auto"
-                        loop
-                        muted
-                        playsInline
-                        className="w-full h-full object-cover"
+                        className="px-4 py-2 bg-white/5 border border-white/20 rounded-full text-sm tracking-wide"
                       >
-                        <source src={video} type="video/mp4" />
-                      </video>
+                        {tag}
+                      </span>
                     ))}
                   </div>
-                  <Link href={`/portfolio/${slugify(work.title)}`}>
-                    <h3 className="text-2xl font-bold text-center pt-3">
-                      {work.title}
-                    </h3>
-                  </Link>
-                </>
-              )}
+                </div>
+              ))}
             </div>
-          ))}
+          </div>
+
+          {/* Mobile Categories */}
+          <div className="lg:hidden space-y-6">
+            {categories.map((category, index) => (
+              <div
+                key={index}
+                className="bg-gradient-to-br from-gray-900 to-gray-950 border border-white/10 rounded-2xl p-6"
+              >
+                <h3 className="text-2xl font-bold mb-3">{category.title}</h3>
+                <div className="space-y-2 mb-4">
+                  <div className="flex items-center gap-2 text-white/60">
+                    <Users className="w-4 h-4" />
+                    <span className="text-sm">{category.age}</span>
+                  </div>
+                  <div className="flex items-center gap-2 text-white/60">
+                    <Clock className="w-4 h-4" />
+                    <span className="text-sm">Cut-Off: {category.cutoff}</span>
+                  </div>
+                </div>
+                <div className="flex flex-wrap gap-2">
+                  {category.tags.map((tag, idx) => (
+                    <span
+                      key={idx}
+                      className="px-3 py-1 bg-white/5 border border-white/20 rounded-full text-xs"
+                    >
+                      {tag}
+                    </span>
+                  ))}
+                </div>
+              </div>
+            ))}
+          </div>
+        </div>
+
+        {/* Registration Info */}
+        <div className="grid lg:grid-cols-2 gap-8 mb-16">
+          <div className="bg-gradient-to-br from-blue-900/30 to-blue-950/30 border border-blue-500/30 rounded-2xl p-8">
+            <h3 className="text-3xl font-bold mb-6 flex items-center gap-3">
+              <CheckCircle className="w-8 h-8 text-blue-400" />
+              Pendaftaran
+            </h3>
+            <ul className="space-y-4 text-white/80">
+              <li className="flex items-start gap-3">
+                <span className="text-blue-400 mt-1">•</span>
+                <span>Pendaftaran hanya melalui website <strong>RegNowOnline</strong></span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="text-blue-400 mt-1">•</span>
+                <span>Pilih kategori sesuai usia</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="text-blue-400 mt-1">•</span>
+                <span>Tanda terima dikirim via email & WhatsApp</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="text-blue-400 mt-1">•</span>
+                <span>Ambil racepack dengan barcode & kartu identitas</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="text-blue-400 mt-1">•</span>
+                <span>Batas pembayaran: 15 hari setelah pendaftaran</span>
+              </li>
+            </ul>
+          </div>
+
+          <div className="bg-gradient-to-br from-orange-900/30 to-orange-950/30 border border-orange-500/30 rounded-2xl p-8">
+            <h3 className="text-3xl font-bold mb-6 flex items-center gap-3">
+              <AlertCircle className="w-8 h-8 text-orange-400" />
+              Peraturan Penting
+            </h3>
+            <ul className="space-y-4 text-white/80">
+              <li className="flex items-start gap-3">
+                <span className="text-orange-400 mt-1">•</span>
+                <span>Biaya pendaftaran <strong>tidak dapat dikembalikan</strong></span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="text-orange-400 mt-1">•</span>
+                <span>Nomor bib & chip <strong>tidak dapat dialihkan</strong></span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="text-orange-400 mt-1">•</span>
+                <span>Wajib pakai nomor bib di dada & chip waktu</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="text-orange-400 mt-1">•</span>
+                <span>Shortcut atau potong rute akan didiskualifikasi</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <span className="text-orange-400 mt-1">•</span>
+                <span>Penyelenggara berhak melakukan tes doping</span>
+              </li>
+            </ul>
+          </div>
+        </div>
+
+        {/* Race Package Info */}
+        <div className="bg-gradient-to-br from-purple-900/30 to-purple-950/30 border border-purple-500/30 rounded-2xl p-8 mb-16">
+          <h3 className="text-3xl font-bold mb-6 flex items-center gap-3">
+            <MapPin className="w-8 h-8 text-purple-400" />
+            Race Pack
+          </h3>
+          <div className="grid md:grid-cols-2 gap-6">
+            <div>
+              <h4 className="text-xl font-semibold mb-3 text-purple-300">Isi Race Pack:</h4>
+              <ul className="space-y-2 text-white/80">
+                <li className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-green-400" />
+                  Kaos lari
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-green-400" />
+                  Chip pencatat waktu
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-green-400" />
+                  Nomor bib
+                </li>
+                <li className="flex items-center gap-2">
+                  <CheckCircle className="w-4 h-4 text-green-400" />
+                  Souvenir
+                </li>
+              </ul>
+            </div>
+            <div>
+              <h4 className="text-xl font-semibold mb-3 text-purple-300">Pengambilan:</h4>
+              <p className="text-white/80 leading-relaxed">
+                Tunjukkan barcode (via email/WhatsApp) dan kartu identitas. Pengambilan oleh pihak lain hanya dengan surat kuasa. Download contoh surat kuasa di <span className="text-purple-300 font-semibold">bayanrun.com</span>
+              </p>
+            </div>
+          </div>
+        </div>
+
+        {/* Cut-Off Times */}
+        <div className="bg-gradient-to-br from-green-900/30 to-green-950/30 border border-green-500/30 rounded-2xl p-8 mb-16">
+          <h3 className="text-3xl font-bold mb-6 flex items-center gap-3">
+            <Clock className="w-8 h-8 text-green-400" />
+            Waktu Cut-Off (COT)
+          </h3>
+          <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+            {categories.map((cat, idx) => (
+              <div key={idx} className="bg-white/5 border border-white/10 rounded-xl p-4 text-center">
+                <div className="text-2xl font-bold text-green-400 mb-2">{cat.cutoff}</div>
+                <div className="text-sm text-white/60">{cat.title}</div>
+              </div>
+            ))}
+          </div>
+          <p className="text-white/60 text-sm mt-6 italic">
+            * Peserta yang melebihi COT tidak dianggap sebagai finisher dan tidak menerima medali maupun finisher shirt
+          </p>
+        </div>
+
+        {/* Contact Info */}
+        <div className="text-center bg-gradient-to-br from-gray-900 to-black border border-white/10 rounded-2xl p-8">
+          <h3 className="text-2xl font-bold mb-4">Informasi Lebih Lanjut</h3>
+          <p className="text-white/70 mb-4">
+            Jika tidak menerima Tanda Terima dalam 5 hari, hubungi:
+          </p>
+          <div className="flex flex-col md:flex-row items-center justify-center gap-4">
+            <span className="px-6 py-3 bg-green-600/20 border border-green-500/50 rounded-full">
+              WhatsApp Admin
+            </span>
+            <span className="px-6 py-3 bg-purple-600/20 border border-purple-500/50 rounded-full">
+              DM Instagram @bayan_open
+            </span>
+          </div>
         </div>
       </div>
-
-      {/* Add CSS for shimmer animation */}
-      <style jsx global>{`
-        @keyframes shimmer {
-          0% { transform: translateX(-100%); }
-          100% { transform: translateX(100%); }
-        }
-      `}</style>
-    </section>
+    </div>
   );
 }

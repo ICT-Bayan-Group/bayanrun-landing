@@ -62,7 +62,7 @@ export default function AboutBanner() {
         />
 
         {/* Overlay semi-transparan */}
-        <div className="absolute inset-0 bg-black/50 z-10" />
+        <div className="absolute inset-0 bg-black/20 z-10" />
 
         {/* Konten di atas video */}
         <div ref={contentRef} className="relative z-20 text-center px-6">
