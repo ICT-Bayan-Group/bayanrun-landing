@@ -3,6 +3,7 @@ export const navLinks = [
   { name: "Home", link: "/" },
   { name: "About", link: "/about" },
   { name: "Schedule & Rules", link: "/schedule-rules" },
+  { name: "FAQ", link: "/faq" },
  // { name: "Portfolio", link: "/portfolio" },
  // { name: "Blog", link: "/blog" },
 ];
