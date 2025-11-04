@@ -64,11 +64,11 @@ export default function HowWeWork() {
 
   return (
     <section
-      className="lg:h-screen flex justify-center items-center relative bg-blue-900 overflow-hidden"
+      className="min-h-screen lg:h-screen flex justify-center items-center relative bg-blue-900 overflow-hidden py-16 sm:py-20 md:py-24 lg:py-0"
       ref={sectionRef}
     >
-      <div className="container text-white text-center lg:-mt-32 mt-[130px]">
-        <h2 className="lg:text-[64px] text-4xl text-red-600 font-bold leading-tight text-center pb-12 max-w-2xl mx-auto">
+      <div className="container text-white text-center px-4 sm:px-6 md:px-8">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[64px] text-red-600 font-bold leading-tight text-center pb-8 sm:pb-10 md:pb-12 max-w-2xl mx-auto -mt-8 sm:-mt-12 md:-mt-16 lg:-mt-32">
           BAYAN RUN CATEGORY
         </h2>
 
@@ -95,12 +95,11 @@ export default function HowWeWork() {
                 strokeDashoffset="565.48"
               />
             </svg>
-            {/* Span with Roboto font */}
             <span
               className="z-10 flex flex-col gap-2 justify-center items-center"
               style={{ fontFamily: "Roboto, sans-serif" }}
             >
-                 <span className="text-xl font-bold leading-tight text-center max-w-2xl mx-auto">5K</span>
+              <span className="text-xl font-bold leading-tight text-center max-w-2xl mx-auto">5K</span>
             </span>
           </div>
 
@@ -165,38 +164,40 @@ export default function HowWeWork() {
           </div>
         </div>
 
-        {/* Mobile & Tab */}
-        <div className="lg:hidden max-h-fit">
-          {/* Repeat same styling for spans on mobile */}
-          <div className="flex justify-center items-center">
-            <div className="w-48 h-48 rounded-full border-2 border-[#1b1b1b] relative">
+        {/* Mobile & Tab - Improved Responsive */}
+        <div className="lg:hidden relative w-full flex justify-center items-center min-h-[400px] sm:min-h-[450px] md:min-h-[500px] -mt-8 sm:-mt-12">
+          {/* First Circle - 5K */}
+          <div className="absolute top-0 left-1/2 -translate-x-1/2">
+            <div className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 rounded-full border-2 border-yellow-400 relative bg-blue-900/50 backdrop-blur-sm">
               <div
                 className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col gap-2 justify-center items-center"
                 style={{ fontFamily: "Roboto, sans-serif" }}
               >
-                 <span className="text-xl font-bold leading-tight text-center max-w-2xl mx-auto">5K</span>
+                <span className="text-lg sm:text-xl md:text-2xl font-bold leading-tight text-center">5K</span>
               </div>
             </div>
           </div>
 
-          <div className="flex justify-center items-center -translate-x-20 -translate-y-16">
-            <div className="w-48 h-48 rounded-full border-2 border-[#1b1b1b] relative">
+          {/* Second Circle - 10K */}
+          <div className="absolute top-20 sm:top-24 md:top-32 left-1/4 sm:left-1/3 -translate-x-1/2">
+            <div className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 rounded-full border-2 border-yellow-400 relative bg-blue-900/50 backdrop-blur-sm">
               <div
                 className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col gap-2 justify-center items-center"
                 style={{ fontFamily: "Roboto, sans-serif" }}
               >
-                 <span className="text-xl font-bold leading-tight text-center max-w-2xl mx-auto">10K</span>
+                <span className="text-lg sm:text-xl md:text-2xl font-bold leading-tight text-center">10K</span>
               </div>
             </div>
           </div>
 
-          <div className="flex justify-center items-center translate-x-20 -translate-y-64">
-            <div className="w-48 h-48 rounded-full border-2 border-[#1b1b1b] relative">
+          {/* Third Circle - 21K */}
+          <div className="absolute top-20 sm:top-24 md:top-32 right-1/4 sm:right-1/3 translate-x-1/2">
+            <div className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 rounded-full border-2 border-yellow-400 relative bg-blue-900/50 backdrop-blur-sm">
               <div
                 className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col gap-2 justify-center items-center"
                 style={{ fontFamily: "Roboto, sans-serif" }}
               >
-                <span className="text-xl font-bold leading-tight text-center max-w-2xl mx-auto">21K</span>
+                <span className="text-lg sm:text-xl md:text-2xl font-bold leading-tight text-center">21K</span>
               </div>
             </div>
           </div>

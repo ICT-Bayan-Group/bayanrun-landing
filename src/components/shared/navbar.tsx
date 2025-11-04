@@ -106,8 +106,8 @@ export default function Navbar() {
                 <Image
                   src={
                     pathname === "/about"
-                      ? "/images/br.png"
-                      : "/images/br.png"
+                      ? "https://drive.google.com/uc?export=view&id=1VgeRdY39EcyoVhuZeQm9uY8i3dva-mlZ"
+                      : "https://drive.google.com/uc?export=view&id=1VgeRdY39EcyoVhuZeQm9uY8i3dva-mlZ"
                   }
                   alt="logo"
                   width={1000}

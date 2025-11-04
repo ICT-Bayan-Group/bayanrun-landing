@@ -42,10 +42,10 @@ export default function AboutSection() {
   return (
     <section
       ref={sectionRef}
-      className="lg:min-h-screen -mt-28 lg:mt-0 flex justify-center items-center text-white font-extralight px-4 pb-16 lg:py-0 bg-blue-900"
+      className="min-h-screen -mt-28 lg:mt-0 flex justify-center items-center text-white font-extralight px-4 sm:px-6 md:px-8 py-16 sm:py-20 md:py-24 lg:py-0 bg-blue-900"
     >
-      <div className="text-center max-w-3xl">
-        <p className="lg:text-5xl text-2xl lg:leading-snug mx-auto flex flex-wrap justify-center gap-3 text-center">
+      <div className="text-center max-w-3xl w-full -mt-12 sm:-mt-8 md:-mt-4 lg:mt-0">
+        <p className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl leading-relaxed sm:leading-relaxed md:leading-snug lg:leading-snug mx-auto flex flex-wrap justify-center gap-2 sm:gap-2.5 md:gap-3 text-center">
           <span className="animate-group">BAYAN RUN 2026,</span>
           <span className="animate-group">THE</span>
           <span className="animate-group">BIGGEST</span>
@@ -56,12 +56,12 @@ export default function AboutSection() {
         </p>
 
         <div
-          className="animate-group mt-10 flex justify-center"
+          className="animate-group mt-8 sm:mt-10 md:mt-12 flex justify-center"
           style={{ fontFamily: "Roboto, sans-serif" }}
         >
           <Link href="/about">
-            <Button className="group w-24 lg:w-28 h-11 lg:h-12 flex items-center gap-4 lg:gap-5 text-base lg:text-lg border-2 border-[#ffffff] hover:bg-white/20 bg-white/10 backdrop-blur-sm">
-              <User className="w-6 h-6 lg:w-7 lg:h-7 rounded-full group-hover:p-0" />
+            <Button className="group w-32 sm:w-36 md:w-40 lg:w-40 h-12 sm:h-13 md:h-14 lg:h-14 flex items-center justify-center gap-3 sm:gap-4 lg:gap-5 text-base sm:text-lg md:text-xl border-2 border-[#ffffff] hover:bg-white/20 bg-white/10 backdrop-blur-sm transition-all">
+              <User className="w-5 h-5 sm:w-6 sm:h-6 lg:w-7 lg:h-7 rounded-full" />
               <span>About</span>
             </Button>
           </Link>
