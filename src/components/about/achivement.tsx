@@ -101,10 +101,10 @@ const RunningEventStats = () => {
                 className="bg-gradient-to-br from-gray-900 to-gray-950 border border-white/10 rounded-2xl p-8 hover:border-white/30 transition-all duration-300 hover:scale-105 cursor-pointer"
               >
                 <div className="flex flex-col items-center text-center">
-                  <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-purple-600 rounded-full flex items-center justify-center mb-6 shadow-lg shadow-blue-500/50">
+                  <div className="w-16 h-16 bg-blue-700 rounded-full flex items-center justify-center mb-6 shadow-lg shadow-blue-500/50">
                     <Icon className="w-8 h-8 text-white" />
                   </div>
-                  <div className="text-5xl lg:text-6xl font-bold mb-3 bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent">
+                  <div className="text-5xl lg:text-6xl font-bold mb-3 bg-blue-500 bg-clip-text text-transparent">
                     {formatNumber(counters[index])}{stat.suffix}
                   </div>
                   <div className="text-white/60 font-medium text-lg tracking-wide">
@@ -117,11 +117,11 @@ const RunningEventStats = () => {
         </div>
 
         {/* Achievement Highlight */}
-        <div className="bg-gradient-to-br from-blue-900/30 to-purple-900/30 border-2 border-blue-500/50 rounded-2xl p-8 text-center">
+        <div className="bg-gradient-to-br from-blue-900/30 to-blue-900/30 border-2 border-blue-500/50 rounded-2xl p-8 text-center">
           <div className="flex items-center justify-center gap-4 mb-4">
-            <Award className="w-10 h-10 text-yellow-500 animate-bounce" />
+            <Award className="w-10 h-10 text-yellow-500 " />
             <h2 className="text-3xl lg:text-4xl font-bold">EVENT TERBESAR DI KALIMANTAN</h2>
-            <Award className="w-10 h-10 text-yellow-500 animate-bounce" />
+            <Award className="w-10 h-10 text-yellow-500 " />
           </div>
           <p className="text-lg text-white/80 max-w-3xl mx-auto leading-relaxed">
             Bergabunglah dengan ribuan pelari dari berbagai negara dalam event running terbesar di Kalimantan. 
