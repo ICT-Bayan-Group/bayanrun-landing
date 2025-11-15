@@ -17,9 +17,9 @@ const SocialLink: React.FC<SocialLinkProps> = ({ href, label, Icon }) => (
         target="_blank"
         rel="noopener noreferrer"
         aria-label={label}
-        className="hover:text-gray-800"
+        className="hover:text-blue-900 transition-colors duration-300"
     >
-        <Icon size={20} />
+        <Icon size={24} />
     </a>
 );
 
@@ -74,11 +74,11 @@ const Footer: React.FC = () => {
                     <div className="hidden md:block w-[1px] h-full bg-gray-300 mx-6" />
 
                     <div className="flex-1 flex flex-col justify-center items-end mt-12 md:mt-0 text-right max-md:items-center max-md:text-center font-[Roboto]">
-                        <div className="uppercase text-xs tracking-widest mb-2">Next Page</div>
-                        <h2 className="text-4xl md:text-5xl font-bold mb-4">Works</h2>
+                        <div className="uppercase text-sm md:text-base font-bold tracking-widest mb-3 text-gray-600">Next Page</div>
+                        <h2 className="text-5xl md:text-6xl font-bold mb-6 text-black">Works</h2>
                         <Link
                             href="/portfolio"
-                            className="inline-flex items-center border border-black px-4 py-2 hover:bg-black hover:text-white transition font-[Impact]"
+                            className="inline-flex items-center border-2 border-black px-6 py-3 text-base md:text-lg hover:bg-black hover:text-white transition-all duration-300 font-[Impact] uppercase tracking-wide"
                         >
                             • Discover
                         </Link>
@@ -86,34 +86,32 @@ const Footer: React.FC = () => {
                 </div>
 
                 {/* Divider */}
-                <div className="border-t border-grey my-6 w-full" />
+                <div className="border-t-2 border-gray-300 my-8 md:my-10 w-full" />
 
                 {/* Bottom Section */}
                 <div className="flex flex-col md:flex-row justify-between w-full items-end gap-8 max-md:items-center">
                     <div className="flex flex-col md:flex-row flex-1 justify-between w-full gap-10 max-md:items-center">
                         {/* Sitemap & Copyright */}
                         <div className="flex flex-col space-y-6 max-md:items-center max-md:text-center font-[Roboto]">
-                            <div className="flex flex-col">
-                                <span className="uppercase text-gray-500 font-extrabold tracking-widest mb-2">Menu</span>
-                                <Link href="/" className="hover:underline">Home</Link>
-                                <Link href="/portfolio" className="hover:underline">Works</Link>
-                                <Link href="/policy" className="hover:underline">Privacy Policy</Link>
-                                <Link href="/terms" className="hover:underline">Terms and Conditions</Link>
-
-                                <Link href="/about" className="hover:underline">About</Link>
-                                <p className="cursor-pointer hover:underline" onClick={() => setIsContactOpen(true)}>Contact</p>
+                            <div className="flex flex-col space-y-2">
+                                <span className="uppercase text-gray-700 font-extrabold tracking-widest mb-3 text-sm md:text-base">Menu</span>
+                                <Link href="/" className="hover:underline hover:text-blue-900 transition-colors text-base md:text-lg font-medium">Home</Link>
+                                <Link href="/about" className="hover:underline hover:text-blue-900 transition-colors text-base md:text-lg font-medium">About</Link>
+                                <Link href="/schedule-rules" className="hover:underline hover:text-blue-900 transition-colors text-base md:text-lg font-medium">Schedule & Rules</Link>
+                                <Link href="/faq" className="hover:underline hover:text-blue-900 transition-colors text-base md:text-lg font-medium">FAQ</Link>
+                                <p className="cursor-pointer hover:underline hover:text-blue-900 transition-colors text-base md:text-lg font-medium" onClick={() => setIsContactOpen(true)}>Contact</p>
                             </div>
-                            <p className="text-gray-500 text-sm">© 2025 PT Bayan Resources Tbk </p>
+                            <p className="text-gray-600 text-sm md:text-base font-medium">© 2025 PT Bayan Resources Tbk</p>
                         </div>
 
                         {/* Social Links & Infos */}
-                        <div className="flex flex-col items-end max-md:items-center max-md:text-center">
-                            <div className="flex items-center space-x-4 mb-4">
+                        <div className="flex flex-col items-end max-md:items-center max-md:text-center space-y-4">
+                            <div className="flex items-center space-x-5 mb-2">
                                 <SocialLink href="https://id.linkedin.com/company/pt-bayan-resources-tbk " label="LinkedIn" Icon={FaLinkedin} />
                                 <SocialLink href="https://www.instagram.com/bayan_open/" label="Instagram" Icon={FaInstagram} />
                                 <SocialLink href="https://api.whatsapp.com/send/?phone=6282154815113&text&type=phone_number&app_absent=0" label="whatsapp" Icon={FaWhatsapp} />
                             </div>
-                            <Link href="/infos" className="hover:underline text-xs font-[Roboto] font-bold">
+                            <Link href="/infos" className="hover:underline hover:text-blue-900 transition-colors text-sm md:text-base font-[Roboto] font-bold uppercase tracking-wide">
                                 Social Media 
                             </Link>
                         </div>
@@ -123,7 +121,7 @@ const Footer: React.FC = () => {
                     <div className="flex-1 flex justify-end ml-6 mt-6 md:mt-0 max-md:justify-center max-md:ml-0">
                         <div className="w-35 md:w-50 h-35 md:h-50 relative group">
                             <Image
-                                src="/images/br.png"
+                                src="https://drive.google.com/uc?export=view&id=1VgeRdY39EcyoVhuZeQm9uY8i3dva-mlZ"
                                 alt="Logo"
                                 fill
                                 className="object-contain transform transition duration-500 group-hover:scale-110 group-hover:rotate-12 group-hover:animate-bounce"

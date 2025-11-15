@@ -4,14 +4,14 @@ import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import Image from "next/image";
 import Link from "next/link";
-import { MoveDown, MoveUp, Workflow, Rocket, Globe } from "lucide-react";
+import { MoveDown, MoveUp, Workflow,} from "lucide-react";
 import { Button } from "../ui/button";
 
 // Array gambar dari folder images
 const slideImages = [
  "https://drive.google.com/uc?export=view&id=19ldCPknuViZSShI7f4CKGa7BM_WRbIBQ",
   "https://drive.google.com/uc?export=view&id=1j5wRlbFmqCq3LsmlNG_5XTHixjy9w2nt",
-  "https://drive.google.com/uc?export=view&id=1j5wRlbFmqCq3LsmlNG_5XTHixjy9w2nt",
+  "https://drive.google.com/uc?export=view&id=1qOuGL3lgLX7iiwnd0E4BjswkoNMTg_kF",
   "https://drive.google.com/uc?export=view&id=1j5wRlbFmqCq3LsmlNG_5XTHixjy9w2nt",
   "https://drive.google.com/uc?export=view&id=1j5wRlbFmqCq3LsmlNG_5XTHixjy9w2nt",
   "https://drive.google.com/uc?export=view&id=1j5wRlbFmqCq3LsmlNG_5XTHixjy9w2nt",

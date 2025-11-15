@@ -106,8 +106,8 @@ export default function Navbar() {
                 <Image
                   src={
                     pathname === "/about"
-                      ? "/images/br.png"
-                      : "/images/br.png"
+                      ? "https://drive.google.com/uc?export=view&id=1VgeRdY39EcyoVhuZeQm9uY8i3dva-mlZ"
+                      : "https://drive.google.com/uc?export=view&id=1VgeRdY39EcyoVhuZeQm9uY8i3dva-mlZ"
                   }
                   alt="logo"
                   width={1000}
@@ -140,24 +140,22 @@ export default function Navbar() {
             {/* Desktop Contact Button */}
             <div className="contact-animate invisible hidden lg:block">
               <Button
-                onClick={() => setIsContactOpen(true)}
                 className={`bg-amber-600 uppercase border border-white/20 ${
                   pathname === "/about"
                     ? "bg-white text-blue-900 hover:bg-white/80"
                     : ""
                 } text-lg cursor-pointer`}
               >
-                Contact
+                REGISTER NOW !!!
               </Button>
             </div>
 
             {/* Mobile Hamburger + Contact */}
             <div className="flex items-center gap-4 lg:hidden">
               <Button
-                onClick={() => setIsContactOpen(true)}
-                className="uppercase border border-white/20 text-sm px-4 py-1"
+                className="uppercase bg-amber-600 border border-white/20 text-sm px-4 py-1"
               >
-                Contact
+                REGISTER NOW !!!
               </Button>
               <button onClick={toggleMobileMenu} className="">
                 {mobileMenuOpen ? (
