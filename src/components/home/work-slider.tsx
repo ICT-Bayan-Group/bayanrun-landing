@@ -4,7 +4,7 @@ import { useEffect, useRef, useState } from "react";
 import gsap from "gsap";
 import Image from "next/image";
 import Link from "next/link";
-import { MoveDown, MoveUp, Workflow, Rocket, Globe } from "lucide-react";
+import { MoveDown, MoveUp, Workflow,} from "lucide-react";
 import { Button } from "../ui/button";
 
 // Array gambar dari folder images

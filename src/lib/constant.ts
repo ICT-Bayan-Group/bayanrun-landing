@@ -4,6 +4,7 @@ export const navLinks = [
   { name: "About", link: "/about" },
   { name: "Schedule & Rules", link: "/schedule-rules" },
   { name: "FAQ", link: "/faq" },
+  { name: "Surat Kuasa", link: "https://bayanrun.com/BAYAN%20RUN%202025%20-%20SURAT%20KUASA%20(Power%20of%20Attorney%20Letter).pdf" },
  // { name: "Portfolio", link: "/portfolio" },
  // { name: "Blog", link: "/blog" },
 ];
@@ -390,7 +391,7 @@ export const blogs = [
     author: {
       name: "Graphodio",
       image: "/images/logo.png",
-      date: "September 09, 2025",
+      date: "September 09, 2026",
     },
   },
   {
@@ -425,14 +426,14 @@ export const blogs = [
     author: {
       name: "Graphodio",
       image: "/images/logo.png",
-      date: "September 14, 2025",
+      date: "September 14, 2026",
     },
   },
   {
-    slug: "seo-isnt-dead-why-your-business-still-needs-it-in-2025",
-    title: "SEO Isn’t Dead: Why Your Business Still Needs It in 2025",
+    slug: "seo-isnt-dead-why-your-business-still-needs-it-in-2026",
+    title: "SEO Isn’t Dead: Why Your Business Still Needs It in 2026",
     thumbnail: "/images/blog3.jpg",
-    secondTitle: "SEO Isn’t Dead: Why Your Business Still Needs It in 2025",
+    secondTitle: "SEO Isn’t Dead: Why Your Business Still Needs It in 2026",
     firstPara:
       "With AI-generated answers and endless algorithm updates, many businesses assume SEO is losing relevance. The truth? SEO has never been more critical—it’s just evolving.",
     secondPara: "",
@@ -453,13 +454,13 @@ export const blogs = [
     seventhPara:
       "Without strong SEO, your brand is renting visibility from ads instead of owning organic authority.",
     eighthPara:
-      "Ready to future-proof your website visibility? Graphodio crafts SEO strategies that work in 2025 and beyond.",
+      "Ready to future-proof your website visibility? Graphodio crafts SEO strategies that work in 2026 and beyond.",
     ninethPara: "",
     endingPara: "",
     author: {
       name: "Graphodio",
       image: "/images/logo.png",
-      date: "September 16, 2025",
+      date: "September 16, 2026",
     },
   },
   {
@@ -491,14 +492,14 @@ export const blogs = [
     author: {
       name: "Graphodio",
       image: "/images/logo.png",
-      date: "September 24, 2025",
+      date: "September 24, 2026",
     },
   },
   {
-    slug: "social-media-marketing-in-2025-from-noise-to-authority",
-    title: "Social Media Marketing in 2025: From Noise to Authority",
+    slug: "social-media-marketing-in-2026-from-noise-to-authority",
+    title: "Social Media Marketing in 2026: From Noise to Authority",
     thumbnail: "/images/blog5.jpg",
-    secondTitle: "Social Media Marketing in 2025: From Noise to Authority",
+    secondTitle: "Social Media Marketing in 2026: From Noise to Authority",
     firstPara:
       "The social media landscape is louder than ever. Algorithms are stricter, attention spans are shorter, and organic reach feels like a struggle. Yet brands still thrive—because they focus on authority, not noise.",
     secondPara: "",
@@ -515,7 +516,7 @@ export const blogs = [
       "● Content Pillars – defining themes that align with brand goals and audience needs. ● Engagement Loops – encouraging interaction through polls, comments, and shares. ● Platform-Specific Tactics – LinkedIn for authority, Instagram for visual storytelling, Facebook for community. ● Data Tracking – measuring what resonates and doubling down.",
     thirdImage: "/images/blog5.jpg",
     thirdImgDes: "",
-    fifthTitle: "Why This Matters in 2025",
+    fifthTitle: "Why This Matters in 2026",
     seventhPara:
       "Audiences don’t want more posts. They want more value. Brands that deliver insights, authenticity, and trust win the algorithm game. Stop shouting into the void. Let Graphodio help you build a social presence that commands authority and drives real business growth.",
     eighthPara: "",
@@ -524,7 +525,7 @@ export const blogs = [
     author: {
       name: "Graphodio",
       image: "/images/logo.png",
-      date: "September 28, 2025",
+      date: "September 28, 2026",
     },
   },
 ];
@@ -628,12 +629,12 @@ export const points = [
   {
     id: "about",
     heading: "ABOUT US",
-    body: "BAYAN RUN adalah ajang lomba lari tahunan persembahan dari PT Bayan Resources Tbk yang kini telah menginjak tahun keempat penyelenggaraan sejak pertama kali diselenggarakan pada tahun 2022 di Balikpapan. BAYAN RUN 2025 akan diselenggarakan di Lapangan Merdeka 3 Balikpapan pada tanggal 12 Oktober 2025. BAYAN RUN 2025 ini akan melanjutkan kisah sukses tahun sebelumnya dimana akan ada menyediakan kategori Half Marathon, 10K, 5K dan juga kategori KIDS yaitu 2,5K. Dengan jumlah target peserta yang jauh lebih banyak dari tahun lalu.",
+    body: "BAYAN RUN adalah ajang lomba lari tahunan persembahan dari PT Bayan Resources Tbk yang kini telah menginjak tahun keempat penyelenggaraan sejak pertama kali diselenggarakan pada tahun 2022 di Balikpapan. BAYAN RUN 2026 akan diselenggarakan di Lapangan Merdeka 3 Balikpapan pada tanggal 12 Oktober 2026. BAYAN RUN 2026 ini akan melanjutkan kisah sukses tahun sebelumnya dimana akan ada menyediakan kategori Half Marathon, 10K, 5K dan juga kategori KIDS yaitu 2,5K. Dengan jumlah target peserta yang jauh lebih banyak dari tahun lalu.",
   },
   {
     id: "mission",
     heading: "OUR MISSION",
-    body: "Event ini merupakan wujud komitmen PT Bayan Resources Tbk terhadap kesehatan serta kesejahteraan masyarakat. Melalui BAYAN RUN 2025 peserta ditantang untuk menunjukkan kecepatan, daya tahan, dan semangat juang yang tinggi.Dengan persaingan yang sengit serta semangat untuk mencapai tujuan, menjadikan setiap langkah merupakan bukti dedikasi dan latihan keras.",
+    body: "Event ini merupakan wujud komitmen PT Bayan Resources Tbk terhadap kesehatan serta kesejahteraan masyarakat. Melalui BAYAN RUN 2026 peserta ditantang untuk menunjukkan kecepatan, daya tahan, dan semangat juang yang tinggi.Dengan persaingan yang sengit serta semangat untuk mencapai tujuan, menjadikan setiap langkah merupakan bukti dedikasi dan latihan keras.",
   },
   {
     id: "vision",
