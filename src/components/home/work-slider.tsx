@@ -12,12 +12,12 @@ const slideImages = [
  "https://drive.google.com/uc?export=view&id=19ldCPknuViZSShI7f4CKGa7BM_WRbIBQ",
   "https://drive.google.com/uc?export=view&id=1j5wRlbFmqCq3LsmlNG_5XTHixjy9w2nt",
   "https://drive.google.com/uc?export=view&id=1qOuGL3lgLX7iiwnd0E4BjswkoNMTg_kF",
-  "https://drive.google.com/uc?export=view&id=1j5wRlbFmqCq3LsmlNG_5XTHixjy9w2nt",
-  "https://drive.google.com/uc?export=view&id=1j5wRlbFmqCq3LsmlNG_5XTHixjy9w2nt",
-  "https://drive.google.com/uc?export=view&id=1j5wRlbFmqCq3LsmlNG_5XTHixjy9w2nt",
-  "https://drive.google.com/uc?export=view&id=1j5wRlbFmqCq3LsmlNG_5XTHixjy9w2nt",
-  "https://drive.google.com/uc?export=view&id=1j5wRlbFmqCq3LsmlNG_5XTHixjy9w2nt",
-  "https://drive.google.com/uc?export=view&id=1j5wRlbFmqCq3LsmlNG_5XTHixjy9w2nt",
+  "https://drive.google.com/uc?export=view&id=1v8yW_xikFFrScUBSdmJGuQDr5ldt8dnj",
+  "https://drive.google.com/uc?export=view&id=1GW2tV1M2vpRGKghP-kn-uy4cHvKXBAlQ",
+  "https://drive.google.com/uc?export=view&id=1ERCnjuGRVGwIIKsKeAw6K56D-hmEWdyD",
+  "https://drive.google.com/uc?export=view&id=17sW74BoIr3zwRl9cXxrL-rTdy0pdUR5z",
+  "https://drive.google.com/uc?export=view&id=1J2dCml3DONs5lisQW07ZWeDXcIHYE9mT",
+  "https://drive.google.com/uc?export=view&id=1v8yW_xikFFrScUBSdmJGuQDr5ldt8dnj",
 ];
 
 export default function StackedSlider() {
@@ -66,17 +66,17 @@ export default function StackedSlider() {
   }, [slides.length]);
 
   return (
-    <section className="py-8 lg:py-20">
+    <section className="py-8 lg:py-20 bg-blue-900">
       <div className="container">
         <div className="pb-10 lg:max-w-6xl lg:px-40 mx-auto">
           <p className="lg:text-5xl text-xl leading-5 text-justify lg:leading-snug mx-auto flex flex-wrap justify-center gap-3 ">
-            <span className="animate-group text-amber-500">OUR</span>
-            <span className="animate-group text-amber-500">GALLERY</span>
+            <span className="animate-group text-red-500">OUR</span>
+            <span className="animate-group text-red-500">GALLERY</span>
           </p>
 
           <div className="animate-group mt-8 flex justify-center">
             <Link href="/gallery">
-              <Button className="group w-40 h-12 flex items-center justify-center gap-3 text-lg border-2 border-[#1b1b1b] cursor-pointer bg-[#1d1d1d]/30">
+              <Button className="group w-40 h-12 flex items-center justify-center gap-3 text-lg border-2 border-[#FFFFFF] cursor-pointer bg-[#1d1d1d]/30">
                 <Workflow className="w-6 h-6" />
                 <span>View All</span>
               </Button>
