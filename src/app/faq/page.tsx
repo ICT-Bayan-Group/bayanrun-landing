@@ -185,18 +185,18 @@ export default function FAQPage() {
   };
 
 return (
-    <div className="min-h-screen bg-black text-white py-12 px-4">
+    <div className="min-h-screen bg-blue-900 text-white py-12 px-4">
       <div className="container mx-auto max-w-7xl">
         {/* Header */}
         <div className="text-center mb-16">
           <div className="inline-flex items-center gap-3 mb-6">
             <div className="w-16 h-16 border-2 border-white rounded-full flex items-center justify-center">
-              <HelpCircle className="w-8 h-8 animate-bounce" />
+              <HelpCircle className="w-8 h-8" />
             </div>
           </div>
           <h1 className="text-5xl lg:text-7xl font-bold mb-4">FAQ</h1>
           <p className="text-xl text-white/70">Pertanyaan yang Sering Diajukan</p>
-          <p className="text-white/50 mt-2 max-w-2xl mx-auto">
+          <p className="text-white mt-2 max-w-3xl mx-auto">
             Punya pertanyaan tentang BayanRun 2025? Temukan jawaban atas pertanyaan paling umum di bawah ini.
           </p>
         </div>

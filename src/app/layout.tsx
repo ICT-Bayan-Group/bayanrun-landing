@@ -8,6 +8,7 @@ import { ContactProvider } from "@/lib/contact-context";
 import ContactForm from "@/components/shared/contact-form";
 import { Toaster } from "sonner";
 import TrackingProvider from "@/providers/tracking-provider";
+import WhatsAppButton from "@/components/shared/whatsapp-button";
 
 const debata = Bebas_Neue({
   subsets: ["latin"],
@@ -17,6 +18,7 @@ const debata = Bebas_Neue({
 const roboto = Roboto({
   subsets: ["latin"],
   weight: ["300", "400", "500", "700"],
+
   display: "swap", 
   variable: "--font-roboto"
 });
@@ -38,12 +40,14 @@ export default function RootLayout({
           gtmIds={["G-K357W4STM4", "GT-NFP5R97W"]}
           fbPixelId="680203374976332"
         />
+         <WhatsAppButton />
         <SmoothScrollProvider>
           <ContactProvider>
             <Navbar />
             {children}
             <Toaster position="top-right" />
             <ContactForm />
+           
             <Footer />
           </ContactProvider>
         </SmoothScrollProvider>
