@@ -8,10 +8,10 @@ import React, { useRef } from "react";
 gsap.registerPlugin(ScrollTrigger);
 
 const categories = [
-  { label: "5K", sub: "Open & Teens", color: "#fdca00", offset: 60 },
-  { label: "10K", sub: "Open", color: "#ff4d4d", offset: 30 },
-  { label: "21K", sub: "Half Marathon", color: "#fdca00", offset: -30 },
-  { label: "2.5K", sub: "Kids", color: "#4df7c8", offset: -60 },
+  { label: "Kid Dash", sub: "Kids", color: "#4df7c8", offset: 60 },
+  { label: "5K", sub: "Open & Teens", color: "#fdca00", offset: 30 },
+  { label: "10K", sub: "Open", color: "#ff4d4d", offset: -30 },
+  { label: "21K", sub: "Half Marathon", color: "#fdca00", offset: -60 }
 ];
 
 export default function HowWeWork() {

@@ -74,14 +74,8 @@ const Footer: React.FC = () => {
                     <div className="hidden md:block w-[1px] h-full bg-gray-300 mx-6" />
 
                     <div className="flex-1 flex flex-col justify-center items-end mt-12 md:mt-0 text-right max-md:items-center max-md:text-center font-[var(--font-poppins)]">
-                        <div className="uppercase text-sm md:text-base font-bold tracking-widest mb-3 text-gray-600">Next Page</div>
-                        <h2 className="text-5xl md:text-6xl font-bold mb-6 text-black">Works</h2>
-                        <Link
-                            href="/portfolio"
-                            className="inline-flex items-center border-2 border-black px-6 py-3 text-base md:text-lg hover:bg-black hover:text-white transition-all duration-300 font-[Impact] uppercase tracking-wide"
-                        >
-                            • Discover
-                        </Link>
+                        <div className="uppercase text-sm md:text-base font-bold tracking-widest mb-3 text-gray-600">11 OKTOBER 2026</div>
+                        <h2 className="text-5xl md:text-6xl font-bold mb-6 text-black">Balikpapan</h2>
                     </div>
                 </div>
 
@@ -96,12 +90,12 @@ const Footer: React.FC = () => {
                             <div className="flex flex-col space-y-2">
                                 <span className="uppercase text-gray-700 font-extrabold tracking-widest mb-3 text-sm md:text-base">Menu</span>
                                 <Link href="/" className="hover:underline hover:text-blue-900 transition-colors text-base md:text-lg font-medium">Home</Link>
-                                <Link href="/about" className="hover:underline hover:text-blue-900 transition-colors text-base md:text-lg font-medium">About</Link>
-                                <Link href="/schedule-rules" className="hover:underline hover:text-blue-900 transition-colors text-base md:text-lg font-medium">Schedule & Rules</Link>
-                                <Link href="/faq" className="hover:underline hover:text-blue-900 transition-colors text-base md:text-lg font-medium">FAQ</Link>
+                                <Link href="/" className="hover:underline hover:text-blue-900 transition-colors text-base md:text-lg font-medium">About</Link>
+                                <Link href="/" className="hover:underline hover:text-blue-900 transition-colors text-base md:text-lg font-medium">Schedule & Rules</Link>
+                                <Link href="/" className="hover:underline hover:text-blue-900 transition-colors text-base md:text-lg font-medium">FAQ</Link>
                                 <p className="cursor-pointer hover:underline hover:text-blue-900 transition-colors text-base md:text-lg font-medium" onClick={() => setIsContactOpen(true)}>Contact</p>
                             </div>
-                            <p className="text-gray-600 text-sm md:text-base font-medium">© 2025 PT Bayan Resources Tbk</p>
+                            <p className="text-gray-600 text-sm md:text-base font-medium">© 2026 PT Bayan Resources Tbk</p>
                         </div>
 
                         {/* Social Links & Infos */}
