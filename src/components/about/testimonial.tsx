@@ -6,7 +6,6 @@ import gsap from "gsap";
 import ScrollTrigger from "gsap/ScrollTrigger";
 import { ArrowRightCircle, MessageCircle } from "lucide-react";
 import React, { useEffect, useRef, useState } from "react";
-import { Avatar, AvatarFallback, AvatarImage } from "../ui/avatar";
 
 gsap.registerPlugin(ScrollTrigger);
 
