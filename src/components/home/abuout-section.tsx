@@ -53,7 +53,7 @@ export default function AboutSection() {
           <span className="animate-group">IN</span>
           <span className="animate-group">KALIMANTAN</span>
         </p>
-
+        {/*
         <div
           className="animate-group mt-8 sm:mt-10 md:mt-12 flex justify-center"
           style={{ fontFamily: "Roboto, sans-serif" }}
@@ -64,7 +64,7 @@ export default function AboutSection() {
               <span>About</span>
             </Button>
           </Link>
-        </div>
+        </div>*/}
       </div>
     </section>
   );
