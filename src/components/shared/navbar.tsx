@@ -117,7 +117,7 @@ export default function Navbar() {
               </Link>
             </div>
 
-            {/* Desktop Navigation */}
+            {/* Desktop Navigation 
             <div className="element uppercase invisible lg:-ml-16 hidden lg:block">
               <ul className="flex gap-8 items-center">
                 {navLinks.map((link) => {
@@ -135,9 +135,9 @@ export default function Navbar() {
                   );
                 })}
               </ul>
-            </div>
+            </div>*/}
 
-            {/* Desktop Contact Button */}
+            {/* Desktop Contact Button *
             <div className="contact-animate invisible hidden lg:block">
               <Button
                 className={`bg-amber-600 uppercase border border-white/20 ${
@@ -148,9 +148,9 @@ export default function Navbar() {
               >
                 REGISTER NOW !!!
               </Button>
-            </div>
+            </div>/}
 
-            {/* Mobile Hamburger + Contact */}
+            {/* Mobile Hamburger + Contact 
             <div className="flex items-center gap-4 lg:hidden">
               <Button
                 className="uppercase bg-amber-600 border border-white/20 text-sm px-4 py-1"
@@ -164,9 +164,9 @@ export default function Navbar() {
                   <Menu className="w-6 h-6" />
                 )}
               </button>
-            </div>
+            </div>*/}
 
-            {/* Mobile Menu */}
+            {/* Mobile Menu 
             <div
               className={`
                 fixed top-0 h-screen w-full lg:hidden bg-black/90 backdrop-blur-2xl pt-20
@@ -195,7 +195,7 @@ export default function Navbar() {
                   <X className="w-6 h-6" />
                 </div>
               </div>
-            </div>
+            </div>*/}
           </div>
         </div>
       </nav>
