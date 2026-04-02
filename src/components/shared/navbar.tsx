@@ -15,7 +15,7 @@ export default function Navbar() {
   const pathname = usePathname();
   const navRef = useRef(null);
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
-  const { setIsContactOpen } = useContact();
+  const {} = useContact();
 
   const toggleMobileMenu = () => setMobileMenuOpen((prev) => !prev);
 

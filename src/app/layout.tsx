@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import { Bebas_Neue, Roboto } from "next/font/google";
+import { Bebas_Neue } from "next/font/google";
 import "./globals.css";
 import SmoothScrollProvider from "@/providers/smooth-scroll-provider";
 import Navbar from "@/components/shared/navbar";
@@ -8,19 +8,18 @@ import { ContactProvider } from "@/lib/contact-context";
 import ContactForm from "@/components/shared/contact-form";
 import { Toaster } from "sonner";
 import TrackingProvider from "@/providers/tracking-provider";
-import WhatsAppButton from "@/components/shared/whatsapp-button";
+import { Poppins } from "next/font/google";
 
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
+  variable: "--font-poppins",
+});
 const debata = Bebas_Neue({
   subsets: ["latin"],
   weight: ["400"],
   display: "swap",
-});
-const roboto = Roboto({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "700"],
-
-  display: "swap", 
-  variable: "--font-roboto"
 });
 
 export const metadata: Metadata = {
@@ -35,19 +34,17 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${debata.className} antialiased !overflow-x-hidden`}>
+      <body className={`${debata.className} ${poppins.variable} antialiased !overflow-x-hidden`}>
         <TrackingProvider
           gtmIds={["G-K357W4STM4", "GT-NFP5R97W"]}
           fbPixelId="680203374976332"
         />
-         <WhatsAppButton />
         <SmoothScrollProvider>
           <ContactProvider>
             <Navbar />
             {children}
             <Toaster position="top-right" />
             <ContactForm />
-           
             <Footer />
           </ContactProvider>
         </SmoothScrollProvider>

@@ -1,7 +1,6 @@
 "use client";
 
 import React, { useLayoutEffect, useRef } from "react";
-import Link from 'next/link';
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
 import { MotionPathPlugin } from "gsap/MotionPathPlugin";
@@ -98,7 +97,7 @@ export default function AboutMissionVision() {
   </span>
 </div>
 
-      <div className="mx-auto max-w-6xl px-6 py-20 md:py-28 space-y-12 font-[Roboto]">
+      <div className="mx-auto max-w-6xl px-6 py-20 md:py-28 space-y-12 font-[var(--font-poppins)]">
         {points.map((item, idx) => (
           <article
             key={item.id}
@@ -116,7 +115,7 @@ export default function AboutMissionVision() {
                   <h2 className="amv-heading font-extrabold leading-[0.95] tracking-tight text-4xl md:text-6xl">
                     {item.heading}
                   </h2>
-                  <p className="amv-body mt-5 max-w-xl text-xl/relaxed md:text-base/relaxed text-black/80 font-semibold font-[Roboto]">
+                  <p className="amv-body mt-5 max-w-xl text-xl/relaxed md:text-base/relaxed text-black/80  font-[var(--font-poppins)]">
                     {item.body}
                   </p>
                 </div>
@@ -149,7 +148,7 @@ export default function AboutMissionVision() {
                   <h2 className="amv-heading font-extrabold leading-[0.95] tracking-tight text-4xl md:text-6xl">
                     {item.heading}
                   </h2>
-                  <p className="amv-body mt-5 max-w-xl text-lg/relaxed md:text-base/relaxed text-black/80 font-semibold font-[Roboto]">
+                  <p className="amv-body mt-5 max-w-xl text-lg/relaxed md:text-base/relaxed text-black/80 font-[var(--font-poppins)]">
                     {item.body}
                   </p>
                 </div>

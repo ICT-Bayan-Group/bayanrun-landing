@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useEffect, useState } from "react";
-import { Users, Calendar, Award, Activity, Globe, TrendingUp } from "lucide-react";
+import { Users, Calendar, Award, Activity } from "lucide-react";
 
 const stats = [
   {

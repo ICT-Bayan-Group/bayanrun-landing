@@ -3,7 +3,7 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useEffect } from 'react';
-import { FaLinkedin, FaFacebook, FaInstagram, FaWhatsapp } from 'react-icons/fa';
+import { FaLinkedin, FaInstagram, FaWhatsapp } from 'react-icons/fa';
 import { useContact } from "@/lib/contact-context"
 
 interface SocialLinkProps {
@@ -73,7 +73,7 @@ const Footer: React.FC = () => {
 
                     <div className="hidden md:block w-[1px] h-full bg-gray-300 mx-6" />
 
-                    <div className="flex-1 flex flex-col justify-center items-end mt-12 md:mt-0 text-right max-md:items-center max-md:text-center font-[Roboto]">
+                    <div className="flex-1 flex flex-col justify-center items-end mt-12 md:mt-0 text-right max-md:items-center max-md:text-center font-[var(--font-poppins)]">
                         <div className="uppercase text-sm md:text-base font-bold tracking-widest mb-3 text-gray-600">Next Page</div>
                         <h2 className="text-5xl md:text-6xl font-bold mb-6 text-black">Works</h2>
                         <Link
@@ -92,7 +92,7 @@ const Footer: React.FC = () => {
                 <div className="flex flex-col md:flex-row justify-between w-full items-end gap-8 max-md:items-center">
                     <div className="flex flex-col md:flex-row flex-1 justify-between w-full gap-10 max-md:items-center">
                         {/* Sitemap & Copyright */}
-                        <div className="flex flex-col space-y-6 max-md:items-center max-md:text-center font-[Roboto]">
+                        <div className="flex flex-col space-y-6 max-md:items-center max-md:text-center font-[var(--font-poppins)]">
                             <div className="flex flex-col space-y-2">
                                 <span className="uppercase text-gray-700 font-extrabold tracking-widest mb-3 text-sm md:text-base">Menu</span>
                                 <Link href="/" className="hover:underline hover:text-blue-900 transition-colors text-base md:text-lg font-medium">Home</Link>
@@ -111,7 +111,7 @@ const Footer: React.FC = () => {
                                 <SocialLink href="https://www.instagram.com/bayan_open/" label="Instagram" Icon={FaInstagram} />
                                 <SocialLink href="https://api.whatsapp.com/send/?phone=6282154815113&text&type=phone_number&app_absent=0" label="whatsapp" Icon={FaWhatsapp} />
                             </div>
-                            <Link href="/infos" className="hover:underline hover:text-blue-900 transition-colors text-sm md:text-base font-[Roboto] font-bold uppercase tracking-wide">
+                            <Link href="/infos" className="hover:underline hover:text-blue-900 transition-colors text-sm md:text-base font-[var(--font-poppins)] font-bold uppercase tracking-wide">
                                 Social Media 
                             </Link>
                         </div>

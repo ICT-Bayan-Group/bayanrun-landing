@@ -4,7 +4,7 @@ import React, { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import Head from "next/head";
-import { Instagram, Globe } from "lucide-react";
+import { Instagram, Globe, Calendar, MapPin } from "lucide-react";
 
 export default function AboutBanner() {
   const aboutRef = useRef<HTMLElement | null>(null);
@@ -30,11 +30,10 @@ export default function AboutBanner() {
   return (
     <>
       <Head>
-        {/* Preload video and poster for instant rendering */}
         <link
           rel="preload"
           as="video"
-          href="https://res.cloudinary.com/dgcedsrzf/video/upload/v1761553124/202510271554_vb6tyk.mp4"
+          href="https://res.cloudinary.com/djs5pi7ev/video/upload/q_auto/f_auto/v1769479898/bayanrun-video_ifpuhz.mp4"
           type="video/mp4"
         />
         <link
@@ -48,10 +47,9 @@ export default function AboutBanner() {
         ref={aboutRef}
         className="relative flex items-center justify-center text-white overflow-hidden min-h-screen bg-black"
       >
-        {/* 🎥 Video Background */}
         <video
           className="absolute inset-0 w-full h-full object-cover z-0"
-          src="https://res.cloudinary.com/dgcedsrzf/video/upload/v1761553124/202510271554_vb6tyk.mp4"
+          src="https://res.cloudinary.com/djs5pi7ev/video/upload/q_auto/f_auto/v1769479898/bayanrun-video_ifpuhz.mp4"
           poster="https://res.cloudinary.com/dgcedsrzf/image/upload/v1761553124/202510271554_poster.jpg"
           preload="auto"
           autoPlay
@@ -61,17 +59,28 @@ export default function AboutBanner() {
           disableRemotePlayback
         />
 
-        {/* Overlay semi-transparan */}
         <div className="absolute inset-0 bg-black/20 z-10" />
 
-        {/* Konten di atas video */}
         <div ref={contentRef} className="relative z-20 text-center px-6">
-          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold mb-4 tracking-tight">
+          <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold mb-6 tracking-tight">
             BAYAN RUN 2026
           </h1>
-          <p className="text-lg sm:text-xl md:text-2xl lg:text-3xl font-light mb-10 tracking-wide">
-            KEEP MOVING, KEEP STRONG
-          </p>
+
+          <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 mb-10">
+            <div className="flex items-center gap-2 text-white/90">
+              <Calendar className="w-5 h-5 text-yellow-400 flex-shrink-0" />
+              <span className="text-base sm:text-lg md:text-xl font-light tracking-wide">
+                11 Oktober 2026
+              </span>
+            </div>
+            <span className="hidden sm:block text-white/40">|</span>
+            <div className="flex items-center gap-2 text-white/90">
+              <MapPin className="w-5 h-5 text-yellow-400 flex-shrink-0" />
+              <span className="text-base sm:text-lg md:text-xl font-light tracking-wide">
+                Lapangan Merdeka 3, Balikpapan
+              </span>
+            </div>
+          </div>
 
           <div className="flex items-center justify-center gap-6 flex-wrap">
             <a

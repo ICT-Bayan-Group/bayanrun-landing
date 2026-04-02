@@ -7,7 +7,6 @@ import { User } from "lucide-react";
 import Link from "next/link";
 import React, { useRef } from "react";
 import { Button } from "../ui/button";
-import Image from "next/image";
 
 gsap.registerPlugin(ScrollTrigger);
 

@@ -103,9 +103,8 @@ export default function EventSchedule() {
           <h2 className="text-3xl lg:text-5xl font-bold mb-4 text-blue-900">
             EVENT SCHEDULE
           </h2>
-          <p className="text-gray-600 text-lg">
-            Don't miss the exciting events at Bayanr Run 2025! Here's the full schedule
-          </p>
+         <p>Don&apos;t miss the exciting events at Bayanr Run 2025! Here&apos;s the full schedule</p>
+
         </div>
 
         {/* Event Cards */}
