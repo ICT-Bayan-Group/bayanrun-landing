@@ -2,7 +2,7 @@
 
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/all";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import React, { useRef } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
@@ -11,56 +11,44 @@ const categories = [
   { label: "Kid Dash", sub: "Kids", color: "#4df7c8", offset: 60 },
   { label: "5K", sub: "Open & Teens", color: "#fdca00", offset: 30 },
   { label: "10K", sub: "Open", color: "#ff4d4d", offset: -30 },
-  { label: "21K", sub: "Half Marathon", color: "#fdca00", offset: -60 }
+  { label: "21K", sub: "Half Marathon", color: "#fdca00", offset: -60 },
 ];
 
 export default function HowWeWork() {
   const sectionRef = useRef(null);
 
-    useGSAP(
+  useGSAP(
     (context) => {
-      if (window.innerWidth >= 1024) {
-        const q = context.selector;
-        const elements = q && q(".elem");
+      const q = context.selector;
+      const elements = q && q(".elem");
 
-        ScrollTrigger.create({
-          trigger: sectionRef.current,
-          start: "top top",
-          end: "+=1400",
-          pin: true,
-          scrub: 2,
+      elements.forEach((element: HTMLElement, index: number) => {
+        const progress = element.querySelector(".progress");
+        const label = element.querySelector(".cat-label");
+        const sub = element.querySelector(".cat-sub");
+
+        const tl = gsap.timeline({
+          delay: index * 0.50,
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 20%",
+            once: true, // animasi hanya jalan sekali
+          },
         });
 
-        elements.forEach((element: HTMLElement) => {
-          const progress = element.querySelector(".progress");
-          const label = element.querySelector(".cat-label");
-          const sub = element.querySelector(".cat-sub");
+        tl.fromTo(
+          progress,
+          { strokeDashoffset: 565.48 },
+          { strokeDashoffset: 0, duration: 1.2, ease: "power3.out" }
+        );
 
-          const tl = gsap.timeline({
-            scrollTrigger: {
-              trigger: element,
-              start: "top 15%",
-              end: "+=900",
-              scrub: 2,
-            },
-          });
-
-          tl.fromTo(
-            progress,
-            { strokeDashoffset: 565.48 },
-            { strokeDashoffset: 0, duration: 1 }
-          );
-
-          tl.fromTo(
-            [label, sub],
-            { opacity: 0, scale: 0.8 },
-            { opacity: 1, scale: 1, duration: 0.5, stagger: 0.1 },
-            "<0.3"
-          );
-
-          // ❌ DIHAPUS: animasi y/x yang bikin circle bergerak dan tabrakan
-        });
-      }
+        tl.fromTo(
+          [label, sub],
+          { opacity: 0, scale: 0.8 },
+          { opacity: 1, scale: 1, duration: 0.5, stagger: 0.1 },
+          "<0.3"
+        );
+      });
     },
     { scope: sectionRef }
   );
@@ -70,7 +58,6 @@ export default function HowWeWork() {
       className="min-h-screen lg:h-screen flex justify-center items-center relative bg-blue-900 overflow-hidden py-16 lg:py-0"
       ref={sectionRef}
     >
-      {/* Background glow blobs */}
       <div className="absolute inset-0 pointer-events-none">
         <div className="absolute top-1/3 left-1/4 w-96 h-96 bg-yellow-400/5 rounded-full blur-3xl" />
         <div className="absolute bottom-1/3 right-1/4 w-96 h-96 bg-red-500/5 rounded-full blur-3xl" />
@@ -78,11 +65,11 @@ export default function HowWeWork() {
       </div>
 
       <div className="container text-white text-center px-4 sm:px-6 md:px-8">
-        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[64px] text-red-500 font-bold leading-tight text-center pb-10 lg:pb-14 max-w-3xl mx-auto">
+        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[64px] text-white font-bold leading-tight text-center pb-10 lg:pb-14 max-w-3xl mx-auto">
           BAYAN RUN CATEGORY
         </h2>
 
-        {/* Desktop — 4 circles */}
+        {/* Desktop */}
         <div className="hidden lg:flex justify-center items-center gap-0">
           {categories.map((cat) => (
             <div
@@ -90,13 +77,10 @@ export default function HowWeWork() {
               className="elem relative h-60 w-60 rounded-full flex justify-center items-center"
               style={{ transform: `translateX(${cat.offset}px)` }}
             >
-              {/* Outer glow ring */}
               <div
                 className="absolute inset-0 rounded-full opacity-20 blur-md"
                 style={{ background: cat.color }}
               />
-
-              {/* SVG progress ring */}
               <svg className="absolute w-full h-full scale-[130%] rotate-[-90deg]">
                 <circle
                   cx="50%"
@@ -119,14 +103,10 @@ export default function HowWeWork() {
                   strokeLinecap="round"
                 />
               </svg>
-
-              {/* Inner ring decoration */}
               <div
                 className="absolute w-[70%] h-[70%] rounded-full border opacity-20"
                 style={{ borderColor: cat.color }}
               />
-
-              {/* Label */}
               <div className="z-10 flex flex-col items-center gap-1">
                 <span
                   className="cat-label text-3xl font-black tracking-tight opacity-0"
@@ -134,9 +114,7 @@ export default function HowWeWork() {
                 >
                   {cat.label}
                 </span>
-                <span
-                  className="cat-sub text-[10px] font-medium tracking-widest uppercase text-white/60 opacity-0"
-                >
+                <span className="cat-sub text-[10px] font-medium tracking-widest uppercase text-white/60 opacity-0">
                   {cat.sub}
                 </span>
               </div>
@@ -144,7 +122,7 @@ export default function HowWeWork() {
           ))}
         </div>
 
-        {/* Mobile & Tablet — 2x2 grid */}
+        {/* Mobile */}
         <div className="lg:hidden grid grid-cols-2 gap-6 max-w-sm sm:max-w-md mx-auto mt-4">
           {categories.map((cat) => (
             <div key={cat.label} className="flex flex-col items-center gap-2">
@@ -152,12 +130,10 @@ export default function HowWeWork() {
                 className="w-32 h-32 sm:w-36 sm:h-36 rounded-full relative flex items-center justify-center"
                 style={{ border: `2px solid ${cat.color}` }}
               >
-                {/* Glow */}
                 <div
                   className="absolute inset-0 rounded-full opacity-10 blur-md"
                   style={{ background: cat.color }}
                 />
-                {/* Inner ring */}
                 <div
                   className="absolute w-[70%] h-[70%] rounded-full border opacity-30"
                   style={{ borderColor: cat.color }}
