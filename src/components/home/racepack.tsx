@@ -38,7 +38,7 @@ const RacePackCarousel: React.FC = () => {
   }, []);
 
    return (
-    <div className="overflow-hidden w-full py-12 md:py-16 lg:py-20 bg-white">
+    <div className="overflow-hidden w-full py-12 md:py-16 lg:py-20 bg-gray-200">
       <div className="text-center pb-8 md:pb-12">
         <h2 className="text-3xl md:text-4xl lg:text-5xl text-blue-900 font-bold tracking-wide">RACE PACK ITEMS</h2>
       </div>

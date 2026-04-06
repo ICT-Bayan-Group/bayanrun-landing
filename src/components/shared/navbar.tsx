@@ -93,7 +93,7 @@ export default function Navbar() {
   );
 
   return (
-    <header className="!overflow-x-hidden relative z-[999] bg-white">
+    <header className="!overflow-x-hidden relative z-[999] bg-gray-200">
       <nav className="py-3">
         <div className="container text-blue-900/40 text-lg">
           <div
@@ -106,8 +106,8 @@ export default function Navbar() {
                 <Image
                   src={
                     pathname === "/about"
-                      ? "https://drive.google.com/uc?export=view&id=1VgeRdY39EcyoVhuZeQm9uY8i3dva-mlZ"
-                      : "https://drive.google.com/uc?export=view&id=1VgeRdY39EcyoVhuZeQm9uY8i3dva-mlZ"
+                      ? "https://res.cloudinary.com/djs5pi7ev/image/upload/q_auto/f_auto/v1775466723/LOGO_BR2026_vbixvo.pngZ"
+                      : "https://res.cloudinary.com/djs5pi7ev/image/upload/q_auto/f_auto/v1775466723/LOGO_BR2026_vbixvo.png"
                   }
                   alt="logo"
                   width={1000}

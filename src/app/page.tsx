@@ -2,6 +2,8 @@ import AboutSection from "@/components/home/abuout-section";
 import Banner from "@/components/home/banner";
 import HowWeWork from "@/components/home/how-we-work";
 import StackedSlider from "@/components/home/work-slider";
+import RacePack from "@/components/home/racepack";
+import AboutStats from "@/components/about/about-stats";
 import AboutMissionVision from "@/components/about/AboutMissionVision";
 export const metadata = {
   title: "Bayan Run – The Biggest Running Event in Kalimantan",
@@ -68,12 +70,13 @@ export default function Home() {
           <Banner />
         </div>
       </section>
-      <AboutSection />
-      <AboutMissionVision />
+       {/* <AboutSection />*/}
+       <AboutStats/>
       <HowWeWork />
       {/* <ServiceSection /> */}
-            {/*    <Racepack />*/}
+            {/* <RacePack />*/}
       <StackedSlider />
+       <AboutMissionVision />
     </main>
   );
 }
