@@ -106,7 +106,7 @@ export default function AboutSection() {
         </div>
       </div>
 
-      {/* ── Bottom ticker — biru gelap, putih, sama persis struktur VideoSection ── */}
+      {/* ── Bottom ticker — biru gelap, putih, sama persis struktur VideoSection ── 
       <div className="relative bg-blue-900 py-6 md:py-8 overflow-hidden">
         <div
           ref={bottomTextRef}
@@ -126,7 +126,7 @@ export default function AboutSection() {
             </div>
           ))}
         </div>
-      </div>
+      </div>*/}
 
     </section>
   );

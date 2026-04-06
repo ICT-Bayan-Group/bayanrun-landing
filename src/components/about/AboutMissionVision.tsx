@@ -9,59 +9,14 @@ if (typeof window !== "undefined") {
   gsap.registerPlugin(ScrollTrigger);
 }
 
-// ─── static data ────────────────────────────────────────────────────────────
-const STATS = [
-  { value: "2026", label: "Year" },
-  { value: "5000+", label: "Runners" },
-  { value: "4", label: "Categories" },
-  { value: "21K", label: "Max Distance" },
-];
-
-const TAGS = ["BAYAN RUN 2026", "THE NEXT LEVEL", "5K", "10K", "21K", "Kid Dash", "KEEP MOVING", "KEEP STRONG"];
-
 const KICKERS = ["WHO WE ARE", "WHAT DRIVES US", "WHERE WE'RE HEADED"];
 const ACCENT_CHARS = ["A", "M", "V"];
 
-// ─── component ───────────────────────────────────────────────────────────────
 export default function AboutMissionVision() {
   const rootRef = useRef<HTMLDivElement | null>(null);
 
   useLayoutEffect(() => {
     const ctx = gsap.context(() => {
-      // Ticker tape scroll
-      const tape = document.querySelector(".amv-tape-inner");
-      if (tape) {
-        gsap.to(tape, {
-          x: "-50%",
-          duration: 18,
-          ease: "none",
-          repeat: -1,
-        });
-      }
-
-      // Stat counters
-      document.querySelectorAll<HTMLElement>(".amv-stat-num").forEach((el) => {
-        const raw = el.dataset.value ?? "0";
-        const num = parseFloat(raw.replace(/\D/g, ""));
-        const suffix = raw.replace(/[\d.]/g, "");
-        if (!isNaN(num)) {
-          gsap.fromTo(
-            el,
-            { innerText: "0" },
-            {
-              innerText: num,
-              duration: 1.6,
-              ease: "power2.out",
-              snap: { innerText: 1 },
-              scrollTrigger: { trigger: el, start: "top 85%", once: true },
-              onUpdate() {
-                el.innerText = Math.round(parseFloat(el.innerText)) + suffix;
-              },
-            }
-          );
-        }
-      });
-
       // Section reveals
       gsap.utils.toArray<HTMLElement>(".amv-section").forEach((section, i) => {
         const tl = gsap.timeline({
@@ -124,38 +79,8 @@ export default function AboutMissionVision() {
     <section
       ref={rootRef}
       id="about-mission-vision"
-      className="relative w-full overflow-hidden bg-[#f5f2ec] text-blue-900 font-[var(--font-poppins)]"
+      className="relative w-full overflow-hidden bg-white text-blue-900"
     >
-
-      {/* ── Stats row ──────────────────────────────────── */}
-      <div className="mx-auto max-w-6xl px-6 pt-14 pb-4">
-        <div className="grid grid-cols-2 md:grid-cols-4 gap-0 border border-blue-900/15 divide-x divide-y md:divide-y-0 divide-blue-900/15">
-          {STATS.map((s) => (
-            <div key={s.label} className="flex flex-col items-center justify-center py-8 gap-1 group">
-              <span
-                className="amv-stat-num text-4xl md:text-5xl font-black tracking-tighter text-blue-900 tabular-nums"
-                data-value={s.value}
-              >
-                {s.value}
-              </span>
-              <span className="text-[15px] uppercase tracking-[0.35em] text-blue-900/50 font-[var(--font-poppins)]">
-                {s.label}
-              </span>
-            </div>
-          ))}
-        </div>
-      </div>
-
-      {/* ── Editorial label ────────────────────────────── */}
-      <div className="mx-auto max-w-6xl px-6 pt-6 pb-2 flex items-center gap-4">
-        <div className="h-px flex-1 bg-blue-900/15" />
-        <span className="text-[15px] uppercase tracking-[0.5em] text-blue-900/40 font-[var(--font-poppins)] whitespace-nowrap">
-          Bayan Run 2026 — Balikpapan
-        </span>
-        <div className="h-px flex-1 bg-blue-900/15" />
-      </div>
-
-      {/* ── Main sections ──────────────────────────────── */}
       <div className="mx-auto max-w-6xl px-6 pb-24 space-y-0">
         {points.map((item, idx) => (
           <article
@@ -183,7 +108,7 @@ export default function AboutMissionVision() {
 
             {/* Text content */}
             <div className={`col-span-12 md:col-span-7 relative z-10 ${idx % 2 === 1 ? "md:col-start-2" : ""}`}>
-              <span className="amv-kicker mb-4 inline-flex items-center gap-2 text-[10px] tracking-[0.4em] text-red-500 uppercase font-[var(--font-poppins)]">
+              <span className="amv-kicker mb-4 inline-flex items-center gap-2 text-[10px] tracking-[0.4em] text-red-500 uppercase">
                 <span className="inline-block w-4 h-px bg-red-500" />
                 {KICKERS[idx]}
               </span>
@@ -194,19 +119,17 @@ export default function AboutMissionVision() {
 
               <div className="amv-divider h-[2px] w-16 bg-yellow-400 mb-6" />
 
-              <p className="amv-body text-base md:text-lg leading-relaxed text-blue-900/70 max-w-lg font-[var(--font-poppins)] font-light">
+              <p className="amv-body text-base md:text-lg leading-relaxed text-blue-900/70 max-w-lg font-light">
                 {item.body}
               </p>
             </div>
 
-            {/* Side panel — decorative */}
+            {/* Side panel */}
             <div className={`amv-side-panel hidden md:block col-span-4 ${idx % 2 === 1 ? "md:col-start-9" : ""}`}>
-              <div className="relative h-48 rounded-2xl overflow-hidden border border-blue-900/10 bg-blue-900/[0.03]">
-                {/* Corner accent */}
+              <div className="relative h-48 rounded-2xl overflow-hidden border border-blue-900/10 bg-orange-500/[0.03]">
                 <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-yellow-400" />
                 <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-red-500" />
 
-                {/* Floating tag cloud */}
                 <div className="absolute inset-0 flex flex-wrap content-center justify-center gap-2 p-4">
                   {(idx === 0
                     ? ["Community", "Unity", "Kalimantan", "2026", "Pride", "Running"]
@@ -216,22 +139,20 @@ export default function AboutMissionVision() {
                   ).map((word) => (
                     <span
                       key={word}
-                      className="text-[10px] uppercase tracking-wider px-2 py-1 rounded-md border border-blue-900/15 text-blue-900/50 font-[var(--font-poppins)]"
+                      className="text-[10px] uppercase tracking-wider px-2 py-1 rounded-md border border-blue-900/15 text-blue-900/50"
                     >
                       {word}
                     </span>
                   ))}
                 </div>
 
-                {/* Category pill */}
-                <div className="absolute bottom-3 right-3 bg-blue-900 text-yellow-400 text-[9px] tracking-widest uppercase px-3 py-1 rounded-full font-[var(--font-poppins)]">
+                <div className="absolute bottom-3 right-3 bg-blue-900 text-yellow-400 text-[9px] tracking-widest uppercase px-3 py-1 rounded-full">
                   {idx === 0 ? "About Us" : idx === 1 ? "Our Mission" : "Our Vision"}
                 </div>
               </div>
 
-              {/* Pull quote */}
               <blockquote className="mt-4 pl-4 border-l-2 border-yellow-400">
-                <p className="text-xs leading-relaxed text-blue-900/50 italic font-[var(--font-poppins)]">
+                <p className="text-xs leading-relaxed text-blue-900/50 italic">
                   {idx === 0
                     ? '"The biggest running celebration Kalimantan has ever seen."'
                     : idx === 1

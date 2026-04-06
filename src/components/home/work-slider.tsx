@@ -147,110 +147,105 @@ export default function StackedSlider() {
   };
 
   return (
-    <section className="py-16 lg:py-24 overflow-hidden relative">
-      {/* Video Background */}
-      <video
-        className="absolute inset-0 w-full h-full object-cover z-0"
-        src="https://res.cloudinary.com/djs5pi7ev/video/upload/q_auto/f_auto/v1775095878/about-video_pmag3j.mp4"
-        autoPlay
-        loop
-        muted
-        playsInline
-        disableRemotePlayback
-      />
+    <section className="py-16 lg:py-24 bg-[#f5f2ec] overflow-hidden relative">
 
-      {/* Dark overlay */}
-      <div className="absolute inset-0 bg-black/65 z-10" />
+      {/* Subtle background decoration */}
+      <div className="absolute inset-0 pointer-events-none">
+        <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-100/60 rounded-full blur-3xl" />
+        <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-amber-100/60 rounded-full blur-3xl" />
+      </div>
 
-      {/* Content */}
-      <div className="relative z-20 container mx-auto px-4">
+      {/* Header */}
+      <div className="text-center mb-16 relative z-10">
+        <p className="text-[11px] uppercase tracking-[0.5em] text-blue-900/40 mb-3">
+          Bayan Run 2025
+        </p>
+        <p className="text-4xl lg:text-6xl font-bold flex flex-wrap justify-center gap-3">
+          <span className="text-blue-900">OUR</span>
+          <span className="text-red-500">GALLERY</span>
+        </p>
+        <div className="mx-auto mt-3 h-[2px] w-12 bg-amber-400" />
+        <p className="text-blue-900/40 mt-4 text-sm tracking-widest uppercase">
+          Moment terbaik Bayan Run
+        </p>
+        <div className="mt-6 flex justify-center">
+          <Link href="/gallery">
+            <Button
+              className="group flex items-center gap-2 px-6 h-11 border border-blue-900/20 bg-white hover:bg-blue-900 text-blue-900 hover:text-white shadow-sm transition-all duration-300"
+            >
+              <Workflow className="w-4 h-4" />
+              <span>View All</span>
+            </Button>
+          </Link>
+        </div>
+      </div>
 
-        {/* Header */}
-        <div className="text-center mb-16">
-          <p className="text-4xl lg:text-6xl font-bold flex flex-wrap justify-center gap-3">
-            <span className="text-white">OUR</span>
-            <span className="text-red-500">GALLERY</span>
-          </p>
-          <p className="text-white/50 mt-3 text-sm tracking-widest uppercase">
-            Moment terbaik Bayan Run
-          </p>
-          <div className="mt-6 flex justify-center">
-            <Link href="/gallery">
-              <Button className="group flex items-center gap-2 px-6 h-11 border border-white/20 bg-white/10 hover:bg-white/20 text-white transition-all">
-                <Workflow className="w-4 h-4" />
-                <span>View All</span>
-              </Button>
-            </Link>
-          </div>
+      {/* Slider */}
+      <div className="relative max-w-2xl mx-auto px-4">
+        {/* Stack container */}
+        <div className="relative h-[55svh] w-full">
+          {slideImages.map((src, i) => (
+            <div
+              key={i}
+              ref={(el) => { slidesRef.current[i] = el; }}
+              className="slide absolute inset-0 rounded-2xl overflow-hidden shadow-xl cursor-pointer will-change-transform border border-black/5"
+              onClick={moveNext}
+            >
+              <Image
+                src={src}
+                alt={`slide-${i + 1}`}
+                fill
+                className="object-cover"
+                sizes="(max-width: 768px) 100vw, 672px"
+              />
+              <div className="absolute inset-0 bg-gradient-to-t from-black/50 via-transparent to-transparent" />
+
+              {getOrder(i, current) === 0 && (
+                <div className="absolute bottom-4 left-4 text-white/80 text-xs tracking-widest uppercase font-mono">
+                  {String(current + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
+                </div>
+              )}
+            </div>
+          ))}
         </div>
 
-        {/* Slider */}
-        <div className="relative max-w-2xl mx-auto">
-          {/* Stack container */}
-          <div className="relative h-[55svh] w-full">
-            {slideImages.map((src, i) => (
-              <div
-                key={i}
-                ref={(el) => { slidesRef.current[i] = el; }}
-                className="slide absolute inset-0 rounded-2xl overflow-hidden shadow-2xl cursor-pointer will-change-transform"
-                onClick={moveNext}
-              >
-                <Image
-                  src={src}
-                  alt={`slide-${i + 1}`}
-                  fill
-                  className="object-cover"
-                  sizes="(max-width: 768px) 100vw, 672px"
-                />
-                <div className="absolute inset-0 bg-gradient-to-t from-black/60 via-transparent to-transparent" />
+        {/* Controls */}
+        <div className="flex items-center justify-center gap-4 mt-10">
+          <button
+            onClick={movePrev}
+            disabled={isAnimating}
+            className="w-12 h-12 rounded-full border border-blue-900/20 bg-white hover:bg-blue-900 text-blue-900 hover:text-white flex items-center justify-center shadow-sm transition-all duration-300 disabled:opacity-40 hover:scale-105 active:scale-95"
+          >
+            <ChevronLeft className="w-5 h-5" />
+          </button>
 
-                {getOrder(i, current) === 0 && (
-                  <div className="absolute bottom-4 left-4 text-white/70 text-xs tracking-widest uppercase">
-                    {String(current + 1).padStart(2, "0")} / {String(total).padStart(2, "0")}
-                  </div>
-                )}
-              </div>
+          {/* Dots */}
+          <div className="flex gap-2 items-center">
+            {slideImages.map((_, i) => (
+              <button
+                key={i}
+                onClick={() => !isAnimating && animateToState(i)}
+                className={`rounded-full transition-all duration-300 ${
+                  i === current
+                    ? "w-6 h-2 bg-blue-900"
+                    : "w-2 h-2 bg-blue-900/20 hover:bg-blue-900/50"
+                }`}
+              />
             ))}
           </div>
 
-          {/* Controls */}
-          <div className="flex items-center justify-center gap-4 mt-10">
-            <button
-              onClick={movePrev}
-              disabled={isAnimating}
-              className="w-12 h-12 rounded-full border border-white/20 bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-all disabled:opacity-40 hover:scale-105 active:scale-95"
-            >
-              <ChevronLeft className="w-5 h-5" />
-            </button>
-
-            {/* Dots */}
-            <div className="flex gap-2">
-              {slideImages.map((_, i) => (
-                <button
-                  key={i}
-                  onClick={() => !isAnimating && animateToState(i)}
-                  className={`rounded-full transition-all duration-300 ${
-                    i === current
-                      ? "w-6 h-2 bg-white"
-                      : "w-2 h-2 bg-white/30 hover:bg-white/60"
-                  }`}
-                />
-              ))}
-            </div>
-
-            <button
-              onClick={moveNext}
-              disabled={isAnimating}
-              className="w-12 h-12 rounded-full border border-white/20 bg-white/10 hover:bg-white/20 text-white flex items-center justify-center transition-all disabled:opacity-40 hover:scale-105 active:scale-95"
-            >
-              <ChevronRight className="w-5 h-5" />
-            </button>
-          </div>
-
-          <p className="text-center text-white/30 text-xs mt-4 tracking-wider">
-            Klik gambar untuk slide berikutnya
-          </p>
+          <button
+            onClick={moveNext}
+            disabled={isAnimating}
+            className="w-12 h-12 rounded-full border border-blue-900/20 bg-white hover:bg-blue-900 text-blue-900 hover:text-white flex items-center justify-center shadow-sm transition-all duration-300 disabled:opacity-40 hover:scale-105 active:scale-95"
+          >
+            <ChevronRight className="w-5 h-5" />
+          </button>
         </div>
+
+        <p className="text-center text-blue-900/30 text-xs mt-4 tracking-wider">
+          Klik gambar untuk slide berikutnya
+        </p>
       </div>
     </section>
   );

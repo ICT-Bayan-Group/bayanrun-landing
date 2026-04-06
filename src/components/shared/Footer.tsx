@@ -59,7 +59,7 @@ const Footer: React.FC = () => {
     return (
         <footer className="relative w-full overflow-hidden">
             <div className="noise-effect absolute inset-0 z-0" />
-            <div className="relative z-10 text-black flex flex-col bg-white justify-between px-4 md:px-6 py-12 md:py-20 max-w-8xl w-full mx-auto rounded-3xl">
+            <div className="relative z-10 text-black flex flex-col bg-gray-200 justify-between px-4 md:px-6 py-12 md:py-20 max-w-8xl w-full mx-auto">
                 {/* Top Section */}
                 <div className="relative flex flex-col md:flex-row w-full items-center md:h-48 max-md:space-y-10">
                     <div className="flex-1 flex flex-col justify-center max-md:items-center max-md:text-center">
@@ -115,7 +115,7 @@ const Footer: React.FC = () => {
                     <div className="flex-1 flex justify-end ml-6 mt-6 md:mt-0 max-md:justify-center max-md:ml-0">
                         <div className="w-35 md:w-50 h-35 md:h-50 relative group">
                             <Image
-                                src="https://drive.google.com/uc?export=view&id=1VgeRdY39EcyoVhuZeQm9uY8i3dva-mlZ"
+                                src="https://res.cloudinary.com/djs5pi7ev/image/upload/q_auto/f_auto/v1775466723/LOGO_BR2026_vbixvo.png"
                                 alt="Logo"
                                 fill
                                 className="object-contain transform transition duration-500 group-hover:scale-110 group-hover:rotate-12 group-hover:animate-bounce"
