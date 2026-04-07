@@ -8,7 +8,7 @@ import { ContactProvider } from "@/lib/contact-context";
 import ContactForm from "@/components/shared/contact-form";
 import { Toaster } from "sonner";
 import TrackingProvider from "@/providers/tracking-provider";
-
+import { Analytics } from "@vercel/analytics/next"
 import { Poppins } from "next/font/google";
 
 
@@ -92,6 +92,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
+        <Analytics />
       <body className={`${poppins.className} ${poppins.variable} ${debata.variable} antialiased !overflow-x-hidden`}>
         <TrackingProvider
           gtmIds={["G-K357W4STM4", "GT-NFP5R97W"]}
