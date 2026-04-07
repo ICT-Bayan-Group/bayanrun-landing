@@ -64,7 +64,7 @@ export default function AboutStats() {
               >
                 {s.value}
               </span>
-              <span className="text-[15px] uppercase tracking-[0.35em] text-blue-900/50">
+              <span className="text-[10px] uppercase tracking-[0.35em] text-blue-900/50">
                 {s.label}
               </span>
             </div>

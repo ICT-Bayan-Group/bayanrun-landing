@@ -119,7 +119,7 @@ export default function AboutMissionVision() {
 
               <div className="amv-divider h-[2px] w-16 bg-yellow-400 mb-6" />
 
-              <p className="amv-body text-base md:text-lg leading-relaxed text-blue-900/70 max-w-lg font-light">
+              <p className="amv-body text-base font-semibold md:text-lg leading-relaxed text-blue-900/70 max-w-lg font-light">
                 {item.body}
               </p>
             </div>

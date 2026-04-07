@@ -131,7 +131,7 @@ export default function AboutBanner() {
             </div>
 
             {/* Subtitle — di bawah socmed, masih dalam hero */}
-            <p className="text-lg sm:text-xl md:text-2xl font-light tracking-widest text-white/70 uppercase">
+            <p className="text-lg sm:text-xl md:text-2xl font-semibold tracking-widest text-white/70 uppercase">
               The Biggest Running Event in{" "}
               <span className="text-yellow-400 font-semibold">Kalimantan</span>
             </p>

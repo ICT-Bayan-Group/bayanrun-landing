@@ -16,14 +16,16 @@ const poppins = Poppins({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
   display: "swap",
-  variable: "--font-poppins",
+  variable: "--font-poppins", // tetap ada variable
+  // tambahkan className agar bisa jadi default
 });
+
 const debata = Bebas_Neue({
   subsets: ["latin"],
 
   weight: ["400"],
   display: "swap",
-
+  variable: "--font-bebas", // ← ganti jadi variable, bukan className
 });
 
 export const metadata = {
@@ -90,7 +92,7 @@ export default function RootLayout({
 }) {
   return (
     <html lang="en">
-      <body className={`${debata.className} ${poppins.variable} antialiased !overflow-x-hidden`}>
+      <body className={`${poppins.className} ${poppins.variable} ${debata.variable} antialiased !overflow-x-hidden`}>
         <TrackingProvider
           gtmIds={["G-K357W4STM4", "GT-NFP5R97W"]}
           fbPixelId="680203374976332"
