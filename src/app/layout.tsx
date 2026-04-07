@@ -97,7 +97,6 @@ export default function RootLayout({
           gtmIds={["G-K357W4STM4", "GT-NFP5R97W"]}
           fbPixelId="680203374976332"
         />
-         <WhatsAppButton />
         <SmoothScrollProvider>
           <ContactProvider>
             <Navbar />
