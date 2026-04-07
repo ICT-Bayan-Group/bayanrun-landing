@@ -156,7 +156,7 @@ export default function StackedSlider() {
 
       {/* Header */}
       <div className="text-center mb-16 relative z-10">
-        <p className="text-[11px] uppercase tracking-[0.5em] text-blue-900/40 mb-3">
+        <p className="text-[11px] uppercase font-semibold tracking-[0.5em] text-blue-900/40 mb-3">
           Bayan Run 2025
         </p>
         <p className="text-4xl lg:text-6xl font-bold flex flex-wrap justify-center gap-3">
@@ -164,7 +164,7 @@ export default function StackedSlider() {
           <span className="text-red-500">GALLERY</span>
         </p>
         <div className="mx-auto mt-3 h-[2px] w-12 bg-amber-400" />
-        <p className="text-blue-900/40 mt-4 text-sm tracking-widest uppercase">
+        <p className="text-blue-900/40 mt-4 text-sm font-semibold tracking-widest uppercase">
           Moment terbaik Bayan Run
         </p>
         <div className="mt-6 flex justify-center">
@@ -173,7 +173,7 @@ export default function StackedSlider() {
               className="group flex items-center gap-2 px-6 h-11 border border-blue-900/20 bg-white hover:bg-blue-900 text-blue-900 hover:text-white shadow-sm transition-all duration-300"
             >
               <Workflow className="w-4 h-4" />
-              <span>View All</span>
+              <span>Galeri</span>
             </Button>
           </Link>
         </div>
@@ -242,7 +242,7 @@ export default function StackedSlider() {
           </button>
         </div>
 
-        <p className="text-center text-blue-900/30 text-xs mt-4 tracking-wider">
+        <p className="text-center font-semibold text-blue-900/30 text-xs mt-4 tracking-wider">
           Klik gambar untuk slide berikutnya
         </p>
       </div>

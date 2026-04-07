@@ -87,7 +87,7 @@ export default function HowWeWork() {
         <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[64px] text-white font-bold leading-tight text-center pb-4 max-w-3xl mx-auto">
           OUR CATEGORY
         </h2>
-        <p className="text-white/70 text-base sm:text-lg mb-12 max-w-xl mx-auto">
+        <p className="text-white/70 text-base sm:text-lg mb-12 max-w-xl mx-auto font --">
           Pilih kategori yang paling cocok untukmu dan mulai perjalanan larimu di Bayan Run 2026.
         </p>
 
@@ -109,7 +109,7 @@ export default function HowWeWork() {
 
                 {/* Label */}
                 <span
-                  className="text-7xl font-black text-center tracking-tight leading-none mb-1"
+                  className="text-5xl font-black text-center tracking-tight leading-none mb-1"
                   style={{ color: cat.accent }}
                 >
                   {cat.label}
