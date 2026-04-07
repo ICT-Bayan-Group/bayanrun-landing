@@ -8,7 +8,7 @@ import { ContactProvider } from "@/lib/contact-context";
 import ContactForm from "@/components/shared/contact-form";
 import { Toaster } from "sonner";
 import TrackingProvider from "@/providers/tracking-provider";
-
+import { Analytics } from "@vercel/analytics/next"
 import { Poppins } from "next/font/google";
 
 
@@ -85,25 +85,23 @@ export const metadata = {
   },
 };
 
-export default function RootLayout({
-  children,
-}: {
-  children: React.ReactNode;
-}) {
+export default function RootLayout({ children }: { children: React.ReactNode }) {
   return (
     <html lang="en">
       <body className={`${poppins.className} ${poppins.variable} ${debata.variable} antialiased !overflow-x-hidden`}>
+        {/* Tracking & Analytics di luar SmoothScrollProvider — sudah benar */}
         <TrackingProvider
           gtmIds={["G-K357W4STM4", "GT-NFP5R97W"]}
           fbPixelId="680203374976332"
         />
+        <Analytics />
+
         <SmoothScrollProvider>
           <ContactProvider>
             <Navbar />
             {children}
             <Toaster position="top-right" />
             <ContactForm />
-           
             <Footer />
           </ContactProvider>
         </SmoothScrollProvider>
