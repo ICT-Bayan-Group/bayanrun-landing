@@ -3,14 +3,24 @@
 import Link from 'next/link';
 import Image from 'next/image';
 import { useEffect } from 'react';
-import { FaLinkedin, FaFacebook, FaInstagram, FaWhatsapp } from 'react-icons/fa';
-import { useContact } from "@/lib/contact-context"
+import { FaLinkedin, FaInstagram, FaWhatsapp } from 'react-icons/fa';
+import { useContact } from "@/lib/contact-context";
+// 1. Import font Allison dari Google Fonts
+import { Allison } from 'next/font/google';
+
+// 2. Konfigurasi font Allison
+const allison = Allison({
+    weight: '400',
+    subsets: ['latin'],
+    variable: '--font-allison',
+});
 
 interface SocialLinkProps {
     href: string;
     label: string;
     Icon: React.ElementType;
 }
+
 const SocialLink: React.FC<SocialLinkProps> = ({ href, label, Icon }) => (
     <a
         href={href}
@@ -57,31 +67,30 @@ const Footer: React.FC = () => {
     }, []);
 
     return (
-        <footer className="relative w-full overflow-hidden">
+        /* 3. Masukkan variable font di container utama */
+        <footer className={`${allison.variable} relative w-full overflow-hidden`}>
             <div className="noise-effect absolute inset-0 z-0" />
-            <div className="relative z-10 text-black flex flex-col bg-white justify-between px-4 md:px-6 py-12 md:py-20 max-w-8xl w-full mx-auto rounded-3xl">
+            <div className="relative z-10 text-black flex flex-col bg-gray-200 justify-between px-4 md:px-6 py-12 md:py-20 max-w-8xl w-full mx-auto">
+                
                 {/* Top Section */}
                 <div className="relative flex flex-col md:flex-row w-full items-center md:h-48 max-md:space-y-10">
                     <div className="flex-1 flex flex-col justify-center max-md:items-center max-md:text-center">
-                        <h1 className="text-6xl md:text-8xl font-extrabold text-blue-900 leading-tight uppercase whitespace-nowrap max-md:whitespace-normal ">
-                            KEEP MOVING
+                        
+                        {/* 4. Implementasi Font Script pada Bagian Ini */}
+                        {/* Ukuran diperbesar ke 8xl karena font script biasanya terlihat lebih kecil dari font sans */}
+                        <h1 className="text-7xl md:text-8xl text-blue-900 font-bold leading-tight font-[family-name:var(--font-allison)]">
+                            Keep Moving
                         </h1>
-                        <h1 className="text-6xl md:text-8xl font-extrabold text-red-800 leading-tight uppercase ">
-                           KEEP STRONG!
+                        <h1 className="text-7xl md:text-8xl text-red-800 font-bold leading-tight font-[family-name:var(--font-allison)] -mt-4 md:-mt-6">
+                            Keep Strong
                         </h1>
                     </div>
 
                     <div className="hidden md:block w-[1px] h-full bg-gray-300 mx-6" />
 
-                    <div className="flex-1 flex flex-col justify-center items-end mt-12 md:mt-0 text-right max-md:items-center max-md:text-center font-[Roboto]">
-                        <div className="uppercase text-sm md:text-base font-bold tracking-widest mb-3 text-gray-600">Next Page</div>
-                        <h2 className="text-5xl md:text-6xl font-bold mb-6 text-black">Works</h2>
-                        <Link
-                            href="/portfolio"
-                            className="inline-flex items-center border-2 border-black px-6 py-3 text-base md:text-lg hover:bg-black hover:text-white transition-all duration-300 font-[Impact] uppercase tracking-wide"
-                        >
-                            • Discover
-                        </Link>
+                    <div className="flex-1 flex flex-col justify-center items-end mt-12 md:mt-0 text-right max-md:items-center max-md:text-center font-[var(--font-poppins)]">
+                        <div className="uppercase text-sm md:text-base font-bold tracking-widest mb-3 text-gray-600">11 OKTOBER 2026</div>
+                        <h2 className="text-5xl md:text-6xl font-bold mb-6 text-black">Balikpapan</h2>
                     </div>
                 </div>
 
@@ -92,16 +101,16 @@ const Footer: React.FC = () => {
                 <div className="flex flex-col md:flex-row justify-between w-full items-end gap-8 max-md:items-center">
                     <div className="flex flex-col md:flex-row flex-1 justify-between w-full gap-10 max-md:items-center">
                         {/* Sitemap & Copyright */}
-                        <div className="flex flex-col space-y-6 max-md:items-center max-md:text-center font-[Roboto]">
+                        <div className="flex flex-col space-y-6 max-md:items-center max-md:text-center font-[var(--font-poppins)]">
                             <div className="flex flex-col space-y-2">
                                 <span className="uppercase text-gray-700 font-extrabold tracking-widest mb-3 text-sm md:text-base">Menu</span>
                                 <Link href="/" className="hover:underline hover:text-blue-900 transition-colors text-base md:text-lg font-medium">Home</Link>
-                                <Link href="/about" className="hover:underline hover:text-blue-900 transition-colors text-base md:text-lg font-medium">About</Link>
-                                <Link href="/schedule-rules" className="hover:underline hover:text-blue-900 transition-colors text-base md:text-lg font-medium">Schedule & Rules</Link>
-                                <Link href="/faq" className="hover:underline hover:text-blue-900 transition-colors text-base md:text-lg font-medium">FAQ</Link>
+                                <Link href="/" className="hover:underline hover:text-blue-900 transition-colors text-base md:text-lg font-medium">About</Link>
+                                <Link href="/" className="hover:underline hover:text-blue-900 transition-colors text-base md:text-lg font-medium">Schedule & Rules</Link>
+                                <Link href="/" className="hover:underline hover:text-blue-900 transition-colors text-base md:text-lg font-medium">FAQ</Link>
                                 <p className="cursor-pointer hover:underline hover:text-blue-900 transition-colors text-base md:text-lg font-medium" onClick={() => setIsContactOpen(true)}>Contact</p>
                             </div>
-                            <p className="text-gray-600 text-sm md:text-base font-medium">© 2025 PT Bayan Resources Tbk</p>
+                            <p className="text-gray-600 text-sm md:text-base font-medium">© 2026 BAYAN OPEN</p>
                         </div>
 
                         {/* Social Links & Infos */}
@@ -111,7 +120,7 @@ const Footer: React.FC = () => {
                                 <SocialLink href="https://www.instagram.com/bayan_open/" label="Instagram" Icon={FaInstagram} />
                                 <SocialLink href="https://api.whatsapp.com/send/?phone=6282154815113&text&type=phone_number&app_absent=0" label="whatsapp" Icon={FaWhatsapp} />
                             </div>
-                            <Link href="/infos" className="hover:underline hover:text-blue-900 transition-colors text-sm md:text-base font-[Roboto] font-bold uppercase tracking-wide">
+                            <Link href="/infos" className="hover:underline hover:text-blue-900 transition-colors text-sm md:text-base font-[var(--font-poppins)] font-bold uppercase tracking-wide">
                                 Social Media 
                             </Link>
                         </div>
@@ -121,7 +130,7 @@ const Footer: React.FC = () => {
                     <div className="flex-1 flex justify-end ml-6 mt-6 md:mt-0 max-md:justify-center max-md:ml-0">
                         <div className="w-35 md:w-50 h-35 md:h-50 relative group">
                             <Image
-                                src="https://drive.google.com/uc?export=view&id=1VgeRdY39EcyoVhuZeQm9uY8i3dva-mlZ"
+                                src="https://res.cloudinary.com/djs5pi7ev/image/upload/q_auto/f_auto/v1775466723/LOGO_BR2026_vbixvo.png"
                                 alt="Logo"
                                 fill
                                 className="object-contain transform transition duration-500 group-hover:scale-110 group-hover:rotate-12 group-hover:animate-bounce"

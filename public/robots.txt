@@ -3,7 +3,7 @@ User-agent: *
 Allow: /
 
 # Host
-Host: https://graphodio.com/
+Host: https://bayanrun.com/
 
 # Sitemaps
-Sitemap: https://graphodio.com/sitemap.xml
+Sitemap: https://bayanrun.com/sitemap.xml

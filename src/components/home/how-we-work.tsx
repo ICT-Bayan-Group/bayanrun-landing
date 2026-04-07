@@ -1,207 +1,262 @@
-/* eslint-disable @next/next/no-img-element */
 "use client";
 
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
-import { ScrollTrigger } from "gsap/all";
+import { ScrollTrigger } from "gsap/ScrollTrigger";
 import React, { useRef } from "react";
 
 gsap.registerPlugin(ScrollTrigger);
 
-export default function HowWeWork() {
-  const sectionRef = useRef(null);
+const categories = [
+  {
+    label: "Kid Dash",
+    sub: "Kids",
+    accent: "#09a30e",
+    accentBg: "#e6f7e6",
+    distance: "±1 KM",
+    tagline: "Mulai dari yang kecil!",
+    desc: "Cocok untuk anak-anak yang ingin merasakan serunya berlari. Lintasan aman, suasana meriah, dan penuh semangat untuk si kecil.",
+  },
+  {
+    label: "5K",
+    sub: "Open & Teens",
+    accent: "#3b82f6",
+    accentBg: "#eff6ff",
+    distance: "5 KM",
+    tagline: "Baru mulai berlari?",
+    desc: "Cocok bagi kamu yang baru memulai perjalanan lari. Jarak yang ramah untuk pemula, tapi tetap menantang dan menyenangkan.",
+  },
+  {
+    label: "10K",
+    sub: "Open",
+    accent: "#ef4444",
+    accentBg: "#fef2f2",
+    distance: "10 KM",
+    tagline: "Siap naik level?",
+    desc: "Cocok bagi kamu yang sudah rutin berlari dan ingin menguji stamina lebih jauh. Rasakan perbedaan setiap langkahmu.",
+  },
+  {
+    label: "21K",
+    sub: "Half Marathon",
+    accent: "#8b5cf6",
+    accentBg: "#f5f3ff",
+    distance: "21 KM",
+    tagline: "Untuk jiwa pelari sejati.",
+    desc: "Cocok bagi kamu yang siap menantang batas diri. Half marathon penuh perjuangan, kebanggaan, dan pencapaian terbesar.",
+  },
+];
+
+const tickerItems = [
+  "Bayan Run 2026", "·", "Kid Dash", "·", "5K", "·", "10K", "·", "Half Marathon", "·",
+  "Bayan Run 2026", "·", "Kid Dash", "·", "5K", "·", "10K", "·", "Half Marathon", "·",
+];
+
+export default function CategorySection() {
+  const sectionRef = useRef<HTMLElement>(null);
+  const tickerRef = useRef<HTMLDivElement>(null);
+  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useGSAP(
     (context) => {
-      if (window.innerWidth >= 1014) {
-        const q = context.selector;
-        const elements = q && q(".elem");
+      const q = context.selector!;
 
-        ScrollTrigger.create({
-          trigger: sectionRef.current,
-          start: "top top",
-          end: "+=1200",
-          pin: true,
-          scrub: 2,
+      // --- Heading & subtext entrance ---
+      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+      tl.to(q(".anim-heading"), { opacity: 1, y: 0, duration: 0.8 }).to(
+        q(".anim-subtext"),
+        { opacity: 1, y: 0, duration: 0.7 },
+        "-=0.5"
+      );
+
+      // --- Cards entrance ---
+      q(".anim-card").forEach((card: HTMLElement, i: number) => {
+        gsap.to(card, {
+          opacity: 1,
+          y: 0,
+          scale: 1,
+          duration: 0.7,
+          delay: 0.6 + i * 0.13,
+          ease: "back.out(1.6)",
+          scrollTrigger: {
+            trigger: sectionRef.current,
+            start: "top 30%",
+            once: true,
+          },
         });
 
-        elements.forEach((element: HTMLElement, index: number) => {
-          const progress = element.querySelector(".progress");
-
-          const tl = gsap.timeline({
-            scrollTrigger: {
-              trigger: element,
-              start: "top 10%",
-              end: "+=800",
-              scrub: 2,
-            },
-          });
-
-          tl.fromTo(
-            progress,
-            { strokeDashoffset: 565.48 },
-            { strokeDashoffset: 0, duration: 1 }
-          );
-
-          tl.fromTo(
-            element,
+        // Accent bar wipe animation
+        const accentFill = card.querySelector(".accent-fill") as HTMLElement;
+        if (accentFill) {
+          gsap.fromTo(
+            accentFill,
+            { left: "-100%" },
             {
-              y: 0,
-              x: index === 0 ? 30 : -30,
-              duration: 1,
-            },
-            {
-              y: 150,
-              x: index === 0 ? 150 : -150,
-              duration: 1,
+              left: "0%",
+              duration: 0.6,
+              delay: 0.85 + i * 0.13,
+              ease: "power2.out",
+              scrollTrigger: {
+                trigger: sectionRef.current,
+                start: "top 30%",
+                once: true,
+              },
             }
           );
+        }
+
+        // Hover interactions
+        card.addEventListener("mouseenter", () => {
+          gsap.to(card, { y: -8, scale: 1.03, duration: 0.3, ease: "power2.out" });
+          const shine = card.querySelector(".card-shine") as HTMLElement;
+          if (shine) {
+            gsap.fromTo(
+              shine,
+              { left: "-80%" },
+              { left: "130%", duration: 0.55, ease: "power1.inOut" }
+            );
+          }
+        });
+
+        card.addEventListener("mouseleave", () => {
+          gsap.to(card, { y: 0, scale: 1, duration: 0.35, ease: "power2.inOut" });
+        });
+
+        card.addEventListener("mousedown", () => {
+          gsap.to(card, { scale: 0.97, duration: 0.1 });
+        });
+
+        card.addEventListener("mouseup", () => {
+          gsap.to(card, { scale: 1.03, duration: 0.15, ease: "back.out(2)" });
+        });
+      });
+
+      // --- Ticker fade in ---
+      gsap.to(q(".anim-ticker"), { opacity: 1, duration: 0.8, delay: 1.3 });
+
+      // --- Ticker marquee ---
+      if (tickerRef.current) {
+        const trackWidth = tickerRef.current.scrollWidth / 2;
+        gsap.to(tickerRef.current, {
+          x: -trackWidth,
+          duration: 18,
+          ease: "none",
+          repeat: -1,
+          modifiers: {
+            x: gsap.utils.unitize((x) => parseFloat(x) % trackWidth),
+          },
         });
       }
+
+      // --- Blob parallax on mouse move ---
+      const section = sectionRef.current;
+      const blob1 = q(".blob1")[0] as HTMLElement;
+      const blob2 = q(".blob2")[0] as HTMLElement;
+
+      const handleMouseMove = (e: MouseEvent) => {
+        const rect = section!.getBoundingClientRect();
+        const mx = (e.clientX - rect.left) / rect.width;
+        const my = (e.clientY - rect.top) / rect.height;
+        gsap.to(blob1, { x: mx * 40 - 20, y: my * 30 - 15, duration: 1.2, ease: "power1.out" });
+        gsap.to(blob2, { x: -(mx * 40 - 20), y: -(my * 30 - 15), duration: 1.4, ease: "power1.out" });
+      };
+
+      section?.addEventListener("mousemove", handleMouseMove as EventListener);
+      return () => section?.removeEventListener("mousemove", handleMouseMove as EventListener);
     },
     { scope: sectionRef }
   );
 
   return (
     <section
-      className="min-h-screen lg:h-screen flex justify-center items-center relative bg-blue-900 overflow-hidden py-16 sm:py-20 md:py-24 lg:py-0"
       ref={sectionRef}
+      className="relative min-h-screen flex justify-center items-center bg-amber-500 overflow-hidden py-20 px-4 sm:px-6 md:px-8"
     >
-      <div className="container text-white text-center px-4 sm:px-6 md:px-8">
-        <h2 className="text-3xl sm:text-4xl md:text-5xl lg:text-[64px] text-red-600 font-bold leading-tight text-center pb-8 sm:pb-10 md:pb-12 max-w-2xl mx-auto -mt-8 sm:-mt-12 md:-mt-16 lg:-mt-32">
-          BAYAN RUN CATEGORY
+      {/* Background blobs */}
+      <div className="blob1 absolute top-1/3 left-1/4 w-96 h-96 rounded-full pointer-events-none"
+        style={{ background: "rgba(254,240,138,0.18)", filter: "blur(60px)" }} />
+      <div className="blob2 absolute bottom-1/3 right-1/4 w-96 h-96 rounded-full pointer-events-none"
+        style={{ background: "rgba(239,68,68,0.12)", filter: "blur(60px)" }} />
+
+      <div className="relative z-10 w-full max-w-5xl text-center">
+        {/* Heading */}
+        <h2
+          className="anim-heading text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-white tracking-wide mb-3"
+          style={{ opacity: 0, transform: "translateY(-30px)" }}
+        >
+          OUR CATEGORY
         </h2>
 
-        <div className="hidden lg:flex justify-center">
-          <div className="relative h-64 w-64 translate-x-[30px] rounded-full flex justify-center items-center elem">
-            <svg className="absolute w-full h-full scale-[140%] rotate-[270deg]">
-              <circle
-                cx="50%"
-                cy="50%"
-                r="90"
-                stroke="transparent"
-                strokeWidth="2"
-                fill="transparent"
-              />
-              <circle
-                className="progress"
-                cx="50%"
-                cy="50%"
-                r="90"
-                stroke="#fdca00ff"
-                strokeWidth="2"
-                fill="transparent"
-                strokeDasharray="565.48"
-                strokeDashoffset="565.48"
-              />
-            </svg>
-            <span
-              className="z-10 flex flex-col gap-2 justify-center items-center"
-              style={{ fontFamily: "Roboto, sans-serif" }}
-            >
-              <span className="text-xl font-bold leading-tight text-center max-w-2xl mx-auto">5K</span>
-            </span>
-          </div>
+        {/* Subtext */}
+        <p
+          className="anim-subtext text-white/70 text-sm sm:text-base max-w-md mx-auto mb-10 leading-relaxed"
+          style={{ opacity: 0, transform: "translateY(20px)" }}
+        >
+          Pilih kategori yang paling cocok untukmu dan mulai perjalanan larimu di Bayan Run 2026.
+        </p>
 
-          <div className="relative h-64 w-64 rounded-full flex justify-center items-center">
-            <svg className="absolute w-full h-full scale-[140%] rotate-[270deg]">
-              <circle
-                cx="50%"
-                cy="50%"
-                r="90"
-                stroke="#fdca00ff"
-                strokeWidth="2"
-                fill="transparent"
-              />
-              <circle
-                className="progress"
-                cx="50%"
-                cy="50%"
-                r="90"
-                stroke="#1b1b1b"
-                strokeWidth="2"
-                fill="transparent"
-                strokeDasharray="565.48"
-                strokeDashoffset="565.48"
-              />
-            </svg>
-            <span
-              className="z-10 flex flex-col gap-2 justify-center items-center"
-              style={{ fontFamily: "Roboto, sans-serif" }}
+        {/* Cards Grid */}
+      {/* Cards Grid */}
+      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 justify-items-center">
+          {categories.map((cat, index) => (
+            <div
+              key={cat.label}
+              ref={(el) => { cardRefs.current[index] = el; }}
+              className="anim-card relative flex flex-col bg-white rounded-2xl overflow-hidden w-full max-w-[190px] sm:max-w-[210px] lg:max-w-none cursor-pointer"
+              style={{ opacity: 0, transform: "translateY(60px) scale(0.92)" }}
             >
-              <span className="text-xl font-bold leading-tight text-center max-w-2xl mx-auto">10K</span>
-            </span>
-          </div>
+              {/* Shine overlay */}
+              <div
+                className="card-shine absolute top-0 h-full w-1/2 pointer-events-none z-10"
+                style={{
+                  left: "-80%",
+                  background: "linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.4) 50%, transparent 60%)",
+                }}
+              />
 
-          <div className="relative h-64 w-64 -translate-x-[30px] rounded-full flex justify-center items-center elem">
-            <svg className="absolute w-full h-full scale-[140%] rotate-[270deg]">
-              <circle
-                cx="50%"
-                cy="50%"
-                r="90"
-                stroke="transparent"
-                strokeWidth="2"
-                fill="transparent"
-              />
-              <circle
-                className="progress"
-                cx="50%"
-                cy="50%"
-                r="90"
-                stroke="#fdca00ff"
-                strokeWidth="2"
-                fill="transparent"
-                strokeDasharray="565.48"
-                strokeDashoffset="565.48"
-              />
-            </svg>
-            <span
-              className="z-10 flex flex-col gap-2 justify-center items-center"
-              style={{ fontFamily: "Roboto, sans-serif" }}
-            >
-              <span className="text-xl font-bold leading-tight text-center max-w-2xl mx-auto">21K</span>
-            </span>
-          </div>
+              {/* Accent bar with wipe animation */}
+              <div className="relative h-1.5 w-full flex-shrink-0 overflow-hidden" style={{ background: cat.accent }}>
+                <div
+                  className="accent-fill absolute top-0 h-full w-full"
+                  style={{ left: "-100%", background: cat.accent }}
+                />
+              </div>
+
+              <div className="flex flex-col flex-1 p-4 sm:p-5 text-left">
+                {/* Label */}
+                <span
+                  className="text-4xl sm:text-4xl font-black text-center tracking-tight leading-none mb-1"
+                  style={{ color: cat.accent }}
+                >
+                  {cat.label}
+                </span>
+
+                {/* Sub */}
+                <span className="text-[10px] font-bold text-center tracking-widest uppercase text-gray-400 mb-4">
+                  {cat.sub}
+                </span>
+
+                {/* Divider */}
+                <div className="h-px w-full mb-4" style={{ background: cat.accent }} />
+
+                {/* Tagline */}
+                <p className="text-xs font-bold text-gray-800 mb-2">{cat.tagline}</p>
+
+                {/* Desc */}
+                <p className="text-[11px] leading-relaxed text-gray-500 flex-1">{cat.desc}</p>
+
+                {/* Distance badge */}
+                <span
+                  className="mt-4 self-start text-[10px] font-bold tracking-widest uppercase px-2.5 py-1 rounded-full"
+                  style={{ background: cat.accentBg, color: cat.accent }}
+                >
+                  {cat.distance}
+                </span>
+              </div>
+            </div>
+          ))}
         </div>
 
-        {/* Mobile & Tab - Improved Responsive */}
-        <div className="lg:hidden relative w-full flex justify-center items-center min-h-[400px] sm:min-h-[450px] md:min-h-[500px] -mt-8 sm:-mt-12">
-          {/* First Circle - 5K */}
-          <div className="absolute top-0 left-1/2 -translate-x-1/2">
-            <div className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 rounded-full border-2 border-yellow-400 relative bg-blue-900/50 backdrop-blur-sm">
-              <div
-                className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col gap-2 justify-center items-center"
-                style={{ fontFamily: "Roboto, sans-serif" }}
-              >
-                <span className="text-lg sm:text-xl md:text-2xl font-bold leading-tight text-center">5K</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Second Circle - 10K */}
-          <div className="absolute top-20 sm:top-24 md:top-32 left-1/4 sm:left-1/3 -translate-x-1/2">
-            <div className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 rounded-full border-2 border-yellow-400 relative bg-blue-900/50 backdrop-blur-sm">
-              <div
-                className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col gap-2 justify-center items-center"
-                style={{ fontFamily: "Roboto, sans-serif" }}
-              >
-                <span className="text-lg sm:text-xl md:text-2xl font-bold leading-tight text-center">10K</span>
-              </div>
-            </div>
-          </div>
-
-          {/* Third Circle - 21K */}
-          <div className="absolute top-20 sm:top-24 md:top-32 right-1/4 sm:right-1/3 translate-x-1/2">
-            <div className="w-32 h-32 sm:w-40 sm:h-40 md:w-48 md:h-48 rounded-full border-2 border-yellow-400 relative bg-blue-900/50 backdrop-blur-sm">
-              <div
-                className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 flex flex-col gap-2 justify-center items-center"
-                style={{ fontFamily: "Roboto, sans-serif" }}
-              >
-                <span className="text-lg sm:text-xl md:text-2xl font-bold leading-tight text-center">21K</span>
-              </div>
-            </div>
-          </div>
-        </div>
+        {/* Ticker */}
       </div>
     </section>
   );

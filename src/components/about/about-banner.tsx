@@ -4,7 +4,6 @@ import React, { useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import Head from "next/head";
-import { Instagram, Globe } from "lucide-react";
 
 export default function AboutBanner() {
   const aboutRef = useRef<HTMLElement | null>(null);
@@ -34,7 +33,7 @@ export default function AboutBanner() {
         <link
           rel="preload"
           as="video"
-          href="https://res.cloudinary.com/dgcedsrzf/video/upload/v1761553124/about-video_jukfvo.mp4"
+          href="https://res.cloudinary.com/djs5pi7ev/video/upload/q_auto/f_auto/v1775095878/about-video_pmag3j.mp4"
           type="video/mp4"
         />
         <link
@@ -51,7 +50,7 @@ export default function AboutBanner() {
         {/* 🎥 Video Background */}
         <video
           className="absolute inset-0 w-full h-full object-cover z-0"
-          src="https://res.cloudinary.com/dgcedsrzf/video/upload/v1761553124/about-video_jukfvo.mp4"
+          src="https://res.cloudinary.com/djs5pi7ev/video/upload/q_auto/f_auto/v1775095878/about-video_pmag3j.mp4"
           poster="https://res.cloudinary.com/dgcedsrzf/image/upload/v1761553124/about-video_jukfvo_poster.jpg"
           preload="auto"
           autoPlay
