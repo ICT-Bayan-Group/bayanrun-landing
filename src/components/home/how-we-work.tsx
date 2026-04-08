@@ -201,7 +201,7 @@ export default function CategorySection() {
             <div
               key={cat.label}
               ref={(el) => { cardRefs.current[index] = el; }}
-              className="anim-card relative flex flex-col bg-white rounded-2xl overflow-hidden w-full max-w-[190px] sm:max-w-[210px] lg:max-w-none cursor-pointer"
+              className="anim-card relative flex flex-col bg-white rounded-2xl overflow-hidden w-full max-w-[330px] sm:max-w-[210px] lg:max-w-none cursor-pointer"
               style={{ opacity: 0, transform: "translateY(60px) scale(0.92)" }}
             >
               {/* Shine overlay */}
