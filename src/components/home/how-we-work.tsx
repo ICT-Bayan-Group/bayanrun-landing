@@ -15,7 +15,7 @@ const categories = [
     accentBg: "#e6f7e6",
     distance: "±1 KM",
     tagline: "Mulai dari yang kecil!",
-    desc: "Cocok untuk anak-anak yang ingin merasakan serunya berlari. Lintasan aman, suasana meriah, dan penuh semangat untuk si kecil.",
+    desc: "Saatnya si kecil mengeksplorasi kegembiraan bergerak. Dengan lintasan yang aman dan suasana ceria, kategori ini dirancang khusus untuk menumbuhkan rasa percaya diri serta semangat berolahraga sejak dini.",
   },
   {
     label: "5K",
@@ -24,7 +24,7 @@ const categories = [
     accentBg: "#eff6ff",
     distance: "5 KM",
     tagline: "Baru mulai berlari?",
-    desc: "Cocok bagi kamu yang baru memulai perjalanan lari. Jarak yang ramah untuk pemula, tapi tetap menantang dan menyenangkan.",
+    desc: "Pilihan ideal bagi kamu yang ingin merasakan euforia perlombaan lari. Jarak yang bersahabat namun tetap memberikan tantangan seru, sangat pas untuk dinikmati bersama teman atau keluarga.",
   },
   {
     label: "10K",
@@ -33,7 +33,7 @@ const categories = [
     accentBg: "#fef2f2",
     distance: "10 KM",
     tagline: "Siap naik level?",
-    desc: "Cocok bagi kamu yang sudah rutin berlari dan ingin menguji stamina lebih jauh. Rasakan perbedaan setiap langkahmu.",
+    desc: "Siap melampaui batas rutinitas? Kategori ini diperuntukkan bagi pelari aktif yang ingin menguji daya tahan dan kecepatan. Rasakan sensasi adrenalin yang meningkat di setiap kilometer menuju garis finish.",
   },
   {
     label: "21K",
@@ -42,7 +42,7 @@ const categories = [
     accentBg: "#f5f3ff",
     distance: "21 KM",
     tagline: "Untuk jiwa pelari sejati.",
-    desc: "Cocok bagi kamu yang siap menantang batas diri. Half marathon penuh perjuangan, kebanggaan, dan pencapaian terbesar.",
+    desc: "Ujian sesungguhnya bagi fisik dan mental. Taklukkan rute yang menantang dan raih kebanggaan tertinggi sebagai penuntas jarak jauh. Ini bukan sekadar lari, ini adalah pembuktian atas disiplin dan kekuatan jiwa kamu.",
   },
 ];
 
@@ -188,7 +188,7 @@ export default function CategorySection() {
 
         {/* Subtext */}
         <p
-          className="anim-subtext text-white/70 text-sm sm:text-base max-w-md mx-auto mb-10 leading-relaxed"
+          className="anim-subtext text-white text-sm sm:text-base font-semibold max-w-md mx-auto mb-10 leading-relaxed"
           style={{ opacity: 0, transform: "translateY(20px)" }}
         >
           Pilih kategori yang paling cocok untukmu dan mulai perjalanan larimu di Bayan Run 2026.
@@ -201,7 +201,7 @@ export default function CategorySection() {
             <div
               key={cat.label}
               ref={(el) => { cardRefs.current[index] = el; }}
-              className="anim-card relative flex flex-col bg-white rounded-2xl overflow-hidden w-full max-w-[190px] sm:max-w-[210px] lg:max-w-none cursor-pointer"
+              className="anim-card relative flex flex-col bg-white rounded-2xl overflow-hidden w-full max-w-[370px] sm:max-w-[210px] lg:max-w-none cursor-pointer"
               style={{ opacity: 0, transform: "translateY(60px) scale(0.92)" }}
             >
               {/* Shine overlay */}

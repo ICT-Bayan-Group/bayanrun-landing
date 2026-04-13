@@ -75,40 +75,44 @@ export default function AboutBanner() {
             disableRemotePlayback
           />
 
-          <div className="absolute inset-0 bg-black/20 z-10" />
+          {/* ── Overlay lebih gelap ── */}
+          <div className="absolute inset-0 bg-black/50 z-10" />
 
           <div ref={contentRef} className="relative z-20 text-center px-6 flex flex-col items-center">
-            {/* Coming Soon Badge */}
-            <div className="flex items-center justify-center mb-6">
-              <div className="flex items-center gap-2 border border-yellow-400/60 rounded-full px-5 py-1.5 backdrop-blur-sm bg-yellow-400/10">
-                <span className="w-1.5 h-1.5 rounded-full bg-yellow-400 animate-pulse" />
-                <span className="text-yellow-400 text-sm sm:text-base font-semibold tracking-[0.3em] uppercase">
+
+            {/* ── Coming Soon Badge — diperbesar ── */}
+            <div className="flex items-center justify-center mb-5">
+              <div className="flex items-center gap-3 border-2 border-yellow-400/70 rounded-full px-8 py-3 backdrop-blur-sm bg-yellow-400/10">
+                <span className="w-2.5 h-2.5 rounded-full bg-yellow-400 animate-pulse" />
+                <span className="text-yellow-400 text-xl sm:text-2xl md:text-3xl font-black tracking-[0.35em] uppercase">
                   Coming Soon
                 </span>
               </div>
             </div>
 
-            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-bold mb-6 tracking-tight">
+            {/* ── Judul ── */}
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-black mb-6 tracking-tight">
               BAYAN RUN 2026
             </h1>
 
+            {/* ── Tanggal & Lokasi ── */}
             <div className="flex flex-col sm:flex-row items-center justify-center gap-3 sm:gap-6 mb-10">
               <div className="flex items-center gap-2 text-white/90">
                 <Calendar className="w-5 h-5 text-yellow-400 flex-shrink-0" />
-                <span className="text-base sm:text-lg md:text-xl font-light tracking-wide">
+                <span className="text-base sm:text-lg md:text-xl font-bold tracking-wide">
                   11 Oktober 2026
                 </span>
               </div>
               <span className="hidden sm:block text-white/40">|</span>
               <div className="flex items-center gap-2 text-white/90">
                 <MapPin className="w-5 h-5 text-yellow-400 flex-shrink-0" />
-                <span className="text-base sm:text-lg md:text-xl font-light tracking-wide">
+                <span className="text-base sm:text-lg md:text-xl font-bold tracking-wide">
                   Lapangan Merdeka 3, Balikpapan
                 </span>
               </div>
             </div>
 
-            {/* Socmed */}
+            {/* ── Socmed ── */}
             <div className="flex items-center justify-center gap-6 flex-wrap mb-10">
               <a
                 href="https://instagram.com/bayan_open"
@@ -117,7 +121,7 @@ export default function AboutBanner() {
                 className="flex items-center gap-2 hover:text-blue-400 transition-colors group"
               >
                 <Instagram className="w-6 h-6 group-hover:scale-110 transition-transform" />
-                <span className="text-base sm:text-lg">bayan_open</span>
+                <span className="text-base sm:text-lg font-bold">bayan_open</span>
               </a>
               <a
                 href="https://www.bayanrun.com"
@@ -126,14 +130,14 @@ export default function AboutBanner() {
                 className="flex items-center gap-2 hover:text-blue-400 transition-colors group"
               >
                 <Globe className="w-6 h-6 group-hover:scale-110 transition-transform" />
-                <span className="text-base sm:text-lg">www.bayanrun.com</span>
+                <span className="text-base sm:text-lg font-bold">www.bayanrun.com</span>
               </a>
             </div>
 
-            {/* Subtitle — di bawah socmed, masih dalam hero */}
-            <p className="text-lg sm:text-xl md:text-2xl font-semibold tracking-widest text-white/70 uppercase">
+            {/* ── Subtitle ── */}
+            <p className="text-lg sm:text-xl md:text-2xl font-black tracking-widest text-white/70 uppercase">
               The Biggest Running Event in{" "}
-              <span className="text-yellow-400 font-semibold">Kalimantan</span>
+              <span className="text-yellow-400 font-black">Kalimantan</span>
             </p>
           </div>
         </div>
@@ -147,11 +151,11 @@ export default function AboutBanner() {
           >
             {[...Array(4)].map((_, index) => (
               <div key={index} className="flex items-center flex-shrink-0">
-                <span className="text-3xl md:text-5xl lg:text-7xl font-black text-blue-900 tracking-tight uppercase mx-8">
+                <span className="text-3xl md:text-5xl lg:text-5xl font-black text-blue-900 tracking-tight uppercase mx-8">
                   THE NEXT LEVEL
                 </span>
-                <span className="text-3xl md:text-5xl lg:text-7xl font-black text-blue-900 mx-4">•</span>
-                <span className="text-3xl md:text-5xl lg:text-7xl font-black text-red-600 tracking-tight uppercase mx-8">
+                <span className="text-3xl md:text-5xl lg:text-5xl font-black text-blue-900 mx-4">•</span>
+                <span className="text-3xl md:text-5xl lg:text-5xl font-black text-red-600 tracking-tight uppercase mx-8">
                   KEEP MOVING KEEP STRONG
                 </span>
                 <span className="text-3xl md:text-5xl lg:text-7xl font-black text-red-900 mx-4">•</span>
