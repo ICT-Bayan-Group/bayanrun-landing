@@ -188,7 +188,7 @@ export default function CategorySection() {
 
         {/* Subtext */}
         <p
-          className="anim-subtext text-white/70 text-sm sm:text-base max-w-md mx-auto mb-10 leading-relaxed"
+          className="anim-subtext text-white text-sm sm:text-base font-semibold max-w-md mx-auto mb-10 leading-relaxed"
           style={{ opacity: 0, transform: "translateY(20px)" }}
         >
           Pilih kategori yang paling cocok untukmu dan mulai perjalanan larimu di Bayan Run 2026.
