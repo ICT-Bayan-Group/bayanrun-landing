@@ -19,7 +19,6 @@ export default function Navbar() {
 
   const toggleMobileMenu = () => setMobileMenuOpen((prev) => !prev);
 
-  // Your GSAP animations for logo and desktop nav
   useGSAP(
     () => {
       const tl = gsap.timeline();
@@ -95,7 +94,7 @@ export default function Navbar() {
   return (
     <header className="!overflow-x-hidden relative z-[999] bg-gray-200">
       <nav className="py-3">
-        <div className="container text-blue-900/40 text-lg">
+        <div className="container text-blue-900 text-lg font-bold">
           <div
             className="nav-wrapper flex justify-between items-center"
             ref={navRef}
@@ -117,9 +116,9 @@ export default function Navbar() {
               </Link>
             </div>
 
-            {/* Desktop Navigation 
+            {/* Desktop Nav Menu */}
             <div className="element uppercase invisible lg:-ml-16 hidden lg:block">
-              <ul className="flex gap-8 items-center">
+              <ul className="flex gap-8 items-center font-poppins font-bold">
                 {navLinks.map((link) => {
                   const isActive =
                     pathname === link.link ||
@@ -135,41 +134,26 @@ export default function Navbar() {
                   );
                 })}
               </ul>
-            </div>*/}
+            </div>
 
-            {/* Desktop Contact Button *
-            <div className="contact-animate invisible hidden lg:block">
-              <Button
-                className={`bg-amber-600 uppercase border border-white/20 ${
-                  pathname === "/about"
-                    ? "bg-white text-blue-900 hover:bg-white/80"
-                    : ""
-                } text-lg cursor-pointer`}
-              >
-                REGISTER NOW !!!
-              </Button>
-            </div>/}
-
-            {/* Mobile Hamburger + Contact 
+            {/* Mobile: Register Button + Hamburger */}
             <div className="flex items-center gap-4 lg:hidden">
-              <Button
-                className="uppercase bg-amber-600 border border-white/20 text-sm px-4 py-1"
-              >
+              {/* <Button className="uppercase bg-amber-600 border border-white/20 text-sm px-4 py-1 font-poppins font-semibold">
                 REGISTER NOW !!!
-              </Button>
-              <button onClick={toggleMobileMenu} className="">
+              </Button> */}
+              <button onClick={toggleMobileMenu}>
                 {mobileMenuOpen ? (
                   <X className="w-6 h-6" />
                 ) : (
                   <Menu className="w-6 h-6" />
                 )}
               </button>
-            </div>*/}
+            </div>
 
-            {/* Mobile Menu 
+            {/* Mobile Menu Overlay */}
             <div
               className={`
-                fixed top-0 h-screen w-full lg:hidden bg-black/90 backdrop-blur-2xl pt-20
+                fixed top-0 h-screen w-full lg:hidden bg-gray-200/90 backdrop-blur-2xl pt-20
                 duration-500 ease-in-out ${
                   mobileMenuOpen ? "left-0" : "left-[-100%]"
                 }
@@ -182,8 +166,8 @@ export default function Navbar() {
                     <Link
                       key={link.link}
                       href={link.link}
-                      className={`text-2xl ${
-                        isActive ? "text-blue-900" : "text-blue-900/60"
+                      className={`text-2xl font-poppins font-semibold uppercase ${
+                        isActive ? "text-blue-900" : "text-blue-900 font-bold"
                       }`}
                       onClick={toggleMobileMenu}
                     >
@@ -191,11 +175,11 @@ export default function Navbar() {
                     </Link>
                   );
                 })}
-                <div className="" onClick={toggleMobileMenu}>
+                <div onClick={toggleMobileMenu}>
                   <X className="w-6 h-6" />
                 </div>
               </div>
-            </div>*/}
+            </div>
           </div>
         </div>
       </nav>
