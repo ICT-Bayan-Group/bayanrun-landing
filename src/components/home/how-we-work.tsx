@@ -46,30 +46,20 @@ const categories = [
   },
 ];
 
-const tickerItems = [
-  "Bayan Run 2026", "·", "Kid Dash", "·", "5K", "·", "10K", "·", "Half Marathon", "·",
-  "Bayan Run 2026", "·", "Kid Dash", "·", "5K", "·", "10K", "·", "Half Marathon", "·",
-];
-
 export default function CategorySection() {
   const sectionRef = useRef<HTMLElement>(null);
   const tickerRef = useRef<HTMLDivElement>(null);
-  const cardRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useGSAP(
-    (context) => {
-      const q = context.selector!;
+    () => {
+      // ── Heading & subtext entrance ─────────────────────────────────────────
+      gsap.timeline({ defaults: { ease: "power3.out" } })
+        .to(".anim-heading", { opacity: 1, y: 0, duration: 0.8 })
+        .to(".anim-subtext", { opacity: 1, y: 0, duration: 0.7 }, "-=0.5");
 
-      // --- Heading & subtext entrance ---
-      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
-      tl.to(q(".anim-heading"), { opacity: 1, y: 0, duration: 0.8 }).to(
-        q(".anim-subtext"),
-        { opacity: 1, y: 0, duration: 0.7 },
-        "-=0.5"
-      );
-
-      // --- Cards entrance ---
-      q(".anim-card").forEach((card: HTMLElement, i: number) => {
+      // ── Cards entrance + accent bar wipe ──────────────────────────────────
+      gsap.utils.toArray<HTMLElement>(".anim-card").forEach((card, i) => {
+        // Card entrance
         gsap.to(card, {
           opacity: 1,
           y: 0,
@@ -84,8 +74,8 @@ export default function CategorySection() {
           },
         });
 
-        // Accent bar wipe animation
-        const accentFill = card.querySelector(".accent-fill") as HTMLElement;
+        // Accent bar wipe
+        const accentFill = card.querySelector<HTMLElement>(".accent-fill");
         if (accentFill) {
           gsap.fromTo(
             accentFill,
@@ -104,36 +94,45 @@ export default function CategorySection() {
           );
         }
 
-        // Hover interactions
-        card.addEventListener("mouseenter", () => {
-          gsap.to(card, { y: -8, scale: 1.03, duration: 0.3, ease: "power2.out" });
-          const shine = card.querySelector(".card-shine") as HTMLElement;
+        // ── Hover: gunakan GSAP quickTo untuk performa lebih baik ──────────
+        // quickTo membuat setter yang di-cache, tidak recreate tween tiap event
+        const yTo = gsap.quickTo(card, "y", { duration: 0.3, ease: "power2.out" });
+        const scaleTo = gsap.quickTo(card, "scale", { duration: 0.3, ease: "power2.out" });
+
+        const onEnter = () => {
+          yTo(-8);
+          scaleTo(1.03);
+          const shine = card.querySelector<HTMLElement>(".card-shine");
           if (shine) {
-            gsap.fromTo(
-              shine,
-              { left: "-80%" },
-              { left: "130%", duration: 0.55, ease: "power1.inOut" }
-            );
+            gsap.fromTo(shine, { left: "-80%" }, { left: "130%", duration: 0.55, ease: "power1.inOut" });
           }
-        });
+        };
+        const onLeave = () => { yTo(0); scaleTo(1); };
+        const onDown = () => scaleTo(0.97);
+        const onUp = () => scaleTo(1.03);
 
-        card.addEventListener("mouseleave", () => {
-          gsap.to(card, { y: 0, scale: 1, duration: 0.35, ease: "power2.inOut" });
-        });
+        card.addEventListener("mouseenter", onEnter);
+        card.addEventListener("mouseleave", onLeave);
+        card.addEventListener("mousedown", onDown);
+        card.addEventListener("mouseup", onUp);
 
-        card.addEventListener("mousedown", () => {
-          gsap.to(card, { scale: 0.97, duration: 0.1 });
-        });
-
-        card.addEventListener("mouseup", () => {
-          gsap.to(card, { scale: 1.03, duration: 0.15, ease: "back.out(2)" });
-        });
+        // GSAP context cleanup otomatis TIDAK hapus DOM listener manual —
+        // kembalikan fungsi cleanup dari useGSAP untuk handle ini.
+        // Tapi karena useGSAP hanya terima 1 return, kita simpan cleanup
+        // di array dan jalankan di return utama (lihat bawah).
+        // Simpan cleanup ke card element sebagai WeakMap data
+        (card as HTMLElement & { _gsapCleanup?: () => void })._gsapCleanup = () => {
+          card.removeEventListener("mouseenter", onEnter);
+          card.removeEventListener("mouseleave", onLeave);
+          card.removeEventListener("mousedown", onDown);
+          card.removeEventListener("mouseup", onUp);
+        };
       });
 
-      // --- Ticker fade in ---
-      gsap.to(q(".anim-ticker"), { opacity: 1, duration: 0.8, delay: 1.3 });
+      // ── Ticker fade in ────────────────────────────────────────────────────
+      gsap.to(".anim-ticker", { opacity: 1, duration: 0.8, delay: 1.3 });
 
-      // --- Ticker marquee ---
+      // ── Ticker marquee — simpan tween agar bisa di-kill ──────────────────
       if (tickerRef.current) {
         const trackWidth = tickerRef.current.scrollWidth / 2;
         gsap.to(tickerRef.current, {
@@ -147,21 +146,30 @@ export default function CategorySection() {
         });
       }
 
-      // --- Blob parallax on mouse move ---
+      // ── Blob parallax mousemove ───────────────────────────────────────────
       const section = sectionRef.current;
-      const blob1 = q(".blob1")[0] as HTMLElement;
-      const blob2 = q(".blob2")[0] as HTMLElement;
+      const blob1 = section?.querySelector<HTMLElement>(".blob1");
+      const blob2 = section?.querySelector<HTMLElement>(".blob2");
 
       const handleMouseMove = (e: MouseEvent) => {
         const rect = section!.getBoundingClientRect();
         const mx = (e.clientX - rect.left) / rect.width;
         const my = (e.clientY - rect.top) / rect.height;
-        gsap.to(blob1, { x: mx * 40 - 20, y: my * 30 - 15, duration: 1.2, ease: "power1.out" });
-        gsap.to(blob2, { x: -(mx * 40 - 20), y: -(my * 30 - 15), duration: 1.4, ease: "power1.out" });
+        if (blob1) gsap.to(blob1, { x: mx * 40 - 20, y: my * 30 - 15, duration: 1.2, ease: "power1.out" });
+        if (blob2) gsap.to(blob2, { x: -(mx * 40 - 20), y: -(my * 30 - 15), duration: 1.4, ease: "power1.out" });
       };
 
       section?.addEventListener("mousemove", handleMouseMove as EventListener);
-      return () => section?.removeEventListener("mousemove", handleMouseMove as EventListener);
+
+      // ── Return cleanup: hapus semua DOM listener manual ───────────────────
+      // useGSAP akan kill semua tween & ScrollTrigger otomatis via context,
+      // tapi DOM listeners harus di-cleanup manual di sini.
+      return () => {
+        section?.removeEventListener("mousemove", handleMouseMove as EventListener);
+        gsap.utils.toArray<HTMLElement>(".anim-card").forEach((card) => {
+          (card as HTMLElement & { _gsapCleanup?: () => void })._gsapCleanup?.();
+        });
+      };
     },
     { scope: sectionRef }
   );
@@ -172,10 +180,16 @@ export default function CategorySection() {
       className="relative min-h-screen flex justify-center items-center bg-amber-500 overflow-hidden py-20 px-4 sm:px-6 md:px-8"
     >
       {/* Background blobs */}
-      <div className="blob1 absolute top-1/3 left-1/4 w-96 h-96 rounded-full pointer-events-none"
-        style={{ background: "rgba(254,240,138,0.18)", filter: "blur(60px)" }} />
-      <div className="blob2 absolute bottom-1/3 right-1/4 w-96 h-96 rounded-full pointer-events-none"
-        style={{ background: "rgba(239,68,68,0.12)", filter: "blur(60px)" }} />
+      <div
+        className="blob1 absolute top-1/3 left-1/4 w-96 h-96 rounded-full pointer-events-none"
+        style={{ background: "rgba(254,240,138,0.18)", filter: "blur(60px)" }}
+        aria-hidden
+      />
+      <div
+        className="blob2 absolute bottom-1/3 right-1/4 w-96 h-96 rounded-full pointer-events-none"
+        style={{ background: "rgba(239,68,68,0.12)", filter: "blur(60px)" }}
+        aria-hidden
+      />
 
       <div className="relative z-10 w-full max-w-5xl text-center">
         {/* Heading */}
@@ -195,12 +209,10 @@ export default function CategorySection() {
         </p>
 
         {/* Cards Grid */}
-      {/* Cards Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 justify-items-center">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-3 sm:gap-4 justify-items-center">
           {categories.map((cat, index) => (
             <div
               key={cat.label}
-              ref={(el) => { cardRefs.current[index] = el; }}
               className="anim-card relative flex flex-col bg-white rounded-2xl overflow-hidden w-full max-w-[370px] sm:max-w-[210px] lg:max-w-none cursor-pointer"
               style={{ opacity: 0, transform: "translateY(60px) scale(0.92)" }}
             >
@@ -209,12 +221,17 @@ export default function CategorySection() {
                 className="card-shine absolute top-0 h-full w-1/2 pointer-events-none z-10"
                 style={{
                   left: "-80%",
-                  background: "linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.4) 50%, transparent 60%)",
+                  background:
+                    "linear-gradient(105deg, transparent 40%, rgba(255,255,255,0.4) 50%, transparent 60%)",
                 }}
+                aria-hidden
               />
 
-              {/* Accent bar with wipe animation */}
-              <div className="relative h-1.5 w-full flex-shrink-0 overflow-hidden" style={{ background: cat.accent }}>
+              {/* Accent bar */}
+              <div
+                className="relative h-1.5 w-full flex-shrink-0 overflow-hidden"
+                style={{ background: cat.accent }}
+              >
                 <div
                   className="accent-fill absolute top-0 h-full w-full"
                   style={{ left: "-100%", background: cat.accent }}
@@ -222,29 +239,22 @@ export default function CategorySection() {
               </div>
 
               <div className="flex flex-col flex-1 p-4 sm:p-5 text-left">
-                {/* Label */}
                 <span
-                  className="text-4xl sm:text-4xl font-black text-center tracking-tight leading-none mb-1"
+                  className="text-4xl font-black text-center tracking-tight leading-none mb-1"
                   style={{ color: cat.accent }}
                 >
                   {cat.label}
                 </span>
 
-                {/* Sub */}
                 <span className="text-[10px] font-bold text-center tracking-widest uppercase text-gray-400 mb-4">
                   {cat.sub}
                 </span>
 
-                {/* Divider */}
                 <div className="h-px w-full mb-4" style={{ background: cat.accent }} />
 
-                {/* Tagline */}
                 <p className="text-xs font-bold text-gray-800 mb-2">{cat.tagline}</p>
-
-                {/* Desc */}
                 <p className="text-[11px] leading-relaxed text-gray-500 flex-1">{cat.desc}</p>
 
-                {/* Distance badge */}
                 <span
                   className="mt-4 self-start text-[10px] font-bold tracking-widest uppercase px-2.5 py-1 rounded-full"
                   style={{ background: cat.accentBg, color: cat.accent }}
@@ -256,7 +266,6 @@ export default function CategorySection() {
           ))}
         </div>
 
-        {/* Ticker */}
       </div>
     </section>
   );
