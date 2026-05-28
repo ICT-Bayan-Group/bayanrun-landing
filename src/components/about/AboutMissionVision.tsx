@@ -1,28 +1,50 @@
 "use client";
 
-import React, { useLayoutEffect, useRef } from "react";
+import { useGSAP } from "@gsap/react";
 import gsap from "gsap";
 import { ScrollTrigger } from "gsap/ScrollTrigger";
+import React, { useRef } from "react";
 import { points } from "@/lib/constant";
 
-if (typeof window !== "undefined") {
-  gsap.registerPlugin(ScrollTrigger);
-}
+// Register sekali di module level — konsisten dengan komponen lain
+gsap.registerPlugin(ScrollTrigger);
 
 const KICKERS = ["WHO WE ARE", "WHAT DRIVES US", "WHERE WE'RE HEADED"];
 const ACCENT_CHARS = ["A", "M", "V"];
 
-export default function AboutMissionVision() {
-  const rootRef = useRef<HTMLDivElement | null>(null);
+const SIDE_PANEL_WORDS = [
+  ["Community", "Unity", "Kalimantan", "2026", "Pride", "Running"],
+  ["Push Limits", "Train Hard", "5K", "10K", "21K", "Finish Line"],
+  ["Future", "Growth", "Record", "Champion", "Together", "Legacy"],
+];
 
-  useLayoutEffect(() => {
-    const ctx = gsap.context(() => {
-      // Section reveals
+const SIDE_PANEL_QUOTES = [
+  '"The biggest running celebration Kalimantan has ever seen."',
+  '"Every stride brings our community closer together."',
+  '"Building a legacy one finish line at a time."',
+];
+
+const SIDE_PANEL_LABELS = ["About Us", "Our Mission", "Our Vision"];
+
+export default function AboutMissionVision() {
+  const rootRef = useRef<HTMLElement>(null);
+
+  // ── Ganti useLayoutEffect + gsap.context manual → useGSAP ─────────────────
+  // useGSAP:
+  //   ✅ Aman di SSR (tidak jalan di server)
+  //   ✅ Auto revert context saat unmount (cleanup ScrollTrigger otomatis)
+  //   ✅ Konsisten dengan komponen GSAP lainnya di project
+  useGSAP(
+    () => {
+      // ── Section reveals ─────────────────────────────────────────────────
       gsap.utils.toArray<HTMLElement>(".amv-section").forEach((section, i) => {
         const tl = gsap.timeline({
           scrollTrigger: {
             trigger: section,
             start: "top 78%",
+            // "play none none reverse" menyebabkan ScrollTrigger tetap hidup
+            // setelah animasi selesai untuk handle reverse. Jika tidak butuh
+            // reverse, ganti ke "play none none none" + once: true lebih hemat.
             toggleActions: "play none none reverse",
           },
         });
@@ -59,7 +81,7 @@ export default function AboutMissionVision() {
         );
       });
 
-      // Diagonal stripe parallax
+      // ── Diagonal stripe parallax ────────────────────────────────────────
       gsap.to(".amv-stripe", {
         yPercent: -30,
         ease: "none",
@@ -70,10 +92,12 @@ export default function AboutMissionVision() {
           scrub: true,
         },
       });
-    }, rootRef);
 
-    return () => ctx.revert();
-  }, []);
+      // useGSAP dengan scope otomatis revert semua tween & ScrollTrigger
+      // saat komponen unmount — tidak perlu return ctx.revert() manual
+    },
+    { scope: rootRef }
+  );
 
   return (
     <section
@@ -89,11 +113,12 @@ export default function AboutMissionVision() {
             className={`amv-section relative border-b border-blue-900/15 py-16 md:py-20 grid grid-cols-12 gap-6 items-start
               ${idx % 2 === 1 ? "md:direction-rtl" : ""}`}
           >
-            {/* Giant accent char */}
+            {/* Giant accent char — purely decorative */}
             <div
               className={`amv-accent-char hidden md:block absolute select-none pointer-events-none
                 text-[20rem] font-black leading-none opacity-[0.035] text-blue-900 top-0
                 ${idx % 2 === 0 ? "-right-8" : "-left-8"}`}
+              aria-hidden
             >
               {ACCENT_CHARS[idx]}
             </div>
@@ -107,9 +132,13 @@ export default function AboutMissionVision() {
             </div>
 
             {/* Text content */}
-            <div className={`col-span-12 md:col-span-7 relative z-10 ${idx % 2 === 1 ? "md:col-start-2" : ""}`}>
+            <div
+              className={`col-span-12 md:col-span-7 relative z-10 ${
+                idx % 2 === 1 ? "md:col-start-2" : ""
+              }`}
+            >
               <span className="amv-kicker mb-4 inline-flex items-center gap-2 text-[10px] tracking-[0.4em] text-red-500 uppercase">
-                <span className="inline-block w-4 h-px bg-red-500" />
+                <span className="inline-block w-4 h-px bg-red-500" aria-hidden />
                 {KICKERS[idx]}
               </span>
 
@@ -125,18 +154,17 @@ export default function AboutMissionVision() {
             </div>
 
             {/* Side panel */}
-            <div className={`amv-side-panel hidden md:block col-span-4 ${idx % 2 === 1 ? "md:col-start-9" : ""}`}>
+            <div
+              className={`amv-side-panel hidden md:block col-span-4 ${
+                idx % 2 === 1 ? "md:col-start-9" : ""
+              }`}
+            >
               <div className="relative h-48 rounded-2xl overflow-hidden border border-blue-900/10 bg-orange-500/[0.03]">
-                <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-yellow-400" />
-                <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-red-500" />
+                <div className="absolute top-0 left-0 w-8 h-8 border-t-2 border-l-2 border-yellow-400" aria-hidden />
+                <div className="absolute bottom-0 right-0 w-8 h-8 border-b-2 border-r-2 border-red-500" aria-hidden />
 
                 <div className="absolute inset-0 flex flex-wrap content-center justify-center gap-2 p-4">
-                  {(idx === 0
-                    ? ["Community", "Unity", "Kalimantan", "2026", "Pride", "Running"]
-                    : idx === 1
-                    ? ["Push Limits", "Train Hard", "5K", "10K", "21K", "Finish Line"]
-                    : ["Future", "Growth", "Record", "Champion", "Together", "Legacy"]
-                  ).map((word) => (
+                  {SIDE_PANEL_WORDS[idx].map((word) => (
                     <span
                       key={word}
                       className="text-[10px] uppercase tracking-wider px-2 py-1 rounded-md border border-blue-900/15 text-blue-900/50"
@@ -147,17 +175,13 @@ export default function AboutMissionVision() {
                 </div>
 
                 <div className="absolute bottom-3 right-3 bg-blue-900 text-yellow-400 text-[9px] tracking-widest uppercase px-3 py-1 rounded-full">
-                  {idx === 0 ? "About Us" : idx === 1 ? "Our Mission" : "Our Vision"}
+                  {SIDE_PANEL_LABELS[idx]}
                 </div>
               </div>
 
               <blockquote className="mt-4 pl-4 border-l-2 border-yellow-400">
                 <p className="text-xs leading-relaxed text-blue-900/50 italic">
-                  {idx === 0
-                    ? '"The biggest running celebration Kalimantan has ever seen."'
-                    : idx === 1
-                    ? '"Every stride brings our community closer together."'
-                    : '"Building a legacy one finish line at a time."'}
+                  {SIDE_PANEL_QUOTES[idx]}
                 </p>
               </blockquote>
             </div>
