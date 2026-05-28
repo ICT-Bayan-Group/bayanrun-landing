@@ -2,6 +2,7 @@ import type { NextConfig } from "next";
 
 const nextConfig: NextConfig = {
   images: {
+    unoptimized: true, // <--- Tambahkan baris ini untuk mematikan optimasi di server Hostinger
     remotePatterns: [
       {
         protocol: "https",
@@ -14,8 +15,8 @@ const nextConfig: NextConfig = {
         pathname: "/**",
       },
       {
-        protocol: 'https',
-        hostname: 'drive.google.com',
+        protocol: "https",
+        hostname: "drive.google.com",
         pathname: "/**",
       },
     ],
