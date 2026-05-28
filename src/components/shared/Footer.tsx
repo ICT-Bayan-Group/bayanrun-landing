@@ -89,7 +89,7 @@ const Footer: React.FC = () => {
                     <div className="hidden md:block w-[1px] h-full bg-gray-300 mx-6" />
 
                     <div className="flex-1 flex flex-col justify-center items-end mt-12 md:mt-0 text-right max-md:items-center max-md:text-center font-[var(--font-poppins)]">
-                        <div className="uppercase text-sm md:text-base font-bold tracking-widest mb-3 text-gray-600">11 OKTOBER 2026</div>
+                        <div className="uppercase text-sm md:text-base font-bold tracking-widest mb-3 text-gray-600">10 - 11 OKTOBER 2026</div>
                         <h2 className="text-5xl md:text-6xl font-bold mb-6 text-black">Balikpapan</h2>
                     </div>
                 </div>
