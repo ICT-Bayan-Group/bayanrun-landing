@@ -631,7 +631,7 @@ export const points = [
   {
     id: "about",
     heading: "ABOUT US",
-    body: "BAYAN RUN adalah ajang lomba lari tahunan persembahan dari PT Bayan Resources Tbk yang kini telah menginjak tahun keempat penyelenggaraan sejak pertama kali diselenggarakan pada tahun 2022 di Balikpapan. BAYAN RUN 2026 akan diselenggarakan di Lapangan Merdeka 3 Balikpapan pada tanggal 12 Oktober 2026. BAYAN RUN 2026 ini akan melanjutkan kisah sukses tahun sebelumnya dimana akan ada menyediakan kategori Half Marathon, 10K, 5K dan juga kategori KIDS yaitu 2,5K. Dengan jumlah target peserta yang jauh lebih banyak dari tahun lalu.",
+    body: "BAYAN RUN adalah ajang lomba lari tahunan persembahan dari PT Bayan Resources Tbk yang kini telah menginjak tahun keempat penyelenggaraan sejak pertama kali diselenggarakan pada tahun 2022 di Balikpapan. BAYAN RUN 2026 akan diselenggarakan di Lapangan Merdeka 3 Balikpapan & BSCC Dome Balikpapan ada tanggal 10-11 Oktober 2026. BAYAN RUN 2026 ini akan melanjutkan kisah sukses tahun sebelumnya dimana akan ada menyediakan kategori Half Marathon, 10K, 5K dan juga kategori KIDS yaitu 2,5K & 700M. Dengan jumlah target peserta yang jauh lebih banyak dari tahun lalu.",
   },
   {
     id: "mission",

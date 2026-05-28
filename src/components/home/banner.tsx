@@ -90,7 +90,7 @@ export default function AboutBanner() {
               <div className="flex items-center gap-2 text-white/90">
                 <Calendar className="w-5 h-5 text-yellow-400 flex-shrink-0" />
                 <span className="text-base sm:text-lg md:text-xl font-bold tracking-wide">
-                 10 & 11 Oktober 2026
+                 10 - 11 Oktober 2026
                 </span>
               </div>
               <span className="hidden sm:block text-white/40">|</span>
