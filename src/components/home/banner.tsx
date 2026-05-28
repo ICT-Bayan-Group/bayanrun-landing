@@ -80,16 +80,6 @@ export default function AboutBanner() {
 
           <div ref={contentRef} className="relative z-20 text-center px-6 flex flex-col items-center">
 
-            {/* ── Coming Soon Badge — diperbesar ── */}
-            <div className="flex items-center justify-center mb-5">
-              <div className="flex items-center gap-3 border-2 border-yellow-400/70 rounded-full px-8 py-3 backdrop-blur-sm bg-yellow-400/10">
-                <span className="w-2.5 h-2.5 rounded-full bg-yellow-400 animate-pulse" />
-                <span className="text-yellow-400 text-xl sm:text-2xl md:text-3xl font-black tracking-[0.35em] uppercase">
-                  Coming Soon
-                </span>
-              </div>
-            </div>
-
             {/* ── Judul ── */}
             <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-8xl font-black mb-6 tracking-tight">
               BAYAN RUN 2026
@@ -100,7 +90,7 @@ export default function AboutBanner() {
               <div className="flex items-center gap-2 text-white/90">
                 <Calendar className="w-5 h-5 text-yellow-400 flex-shrink-0" />
                 <span className="text-base sm:text-lg md:text-xl font-bold tracking-wide">
-                  11 Oktober 2026
+                 10 & 11 Oktober 2026
                 </span>
               </div>
               <span className="hidden sm:block text-white/40">|</span>
@@ -111,7 +101,19 @@ export default function AboutBanner() {
                 </span>
               </div>
             </div>
-
+          {/* ── Registration Banner ── */}
+            <div className="relative flex items-center gap-4 bg-gradient-to-r from-yellow-400 to-amber-500 text-indigo-950 rounded-2xl px-8 py-4 mb-10 shadow-[0_0_32px_rgba(250,204,21,0.45)] overflow-hidden">
+              <div className="absolute top-0 left-[-10%] w-1/2 h-full bg-white/15 -skew-x-12 pointer-events-none" />
+              <div className="flex flex-col items-start leading-tight">
+                <span className="text-xs sm:text-sm font-bold uppercase tracking-[0.2em] opacity-70">
+                  Pendaftaran Dibuka
+                </span>
+                <span className="text-lg sm:text-xl md:text-2xl font-black tracking-wide uppercase">
+                  13 Juni 2026
+                </span>
+              </div>
+              <span className="text-2xl font-black ml-1">→</span>
+            </div>
             {/* ── Socmed ── */}
             <div className="flex items-center justify-center gap-6 flex-wrap mb-10">
               <a
