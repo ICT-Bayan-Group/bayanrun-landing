@@ -1,3 +1,4 @@
+"use client";
 import AboutBanner from "@/components/about/about-banner";
 import AboutMissionVision from "@/components/about/AboutMissionVision";
 import Testimonial from "@/components/about/testimonial";

@@ -14,7 +14,6 @@ const events = [
     date: "Saturday, 11 October 2025",
     location: "Gedung Kesenian Balikpapan",
     dayTime: "Saturday, 11 October 2025 - 08:00 - 19:00 WITA",
-    video: "/video1.mp4"
   },
   {
     id: 2,
@@ -28,7 +27,6 @@ const events = [
       "5K Teens : 06:10 WITA (COT = 1 Jam)",
       "2.5K Kids : 06:20 WITA (COT = 50 Menit)"
     ],
-    video: "/video2.mp4"
   }
 ];
 
@@ -120,15 +118,6 @@ export default function EventSchedule() {
                 <h3 className="text-2xl lg:text-3xl font-bold text-blue-900">
                   {event.title}
                 </h3>
-                <video
-                  className="hidden lg:block w-20 h-20 object-cover rounded-lg event-video"
-                  src={event.video}
-                  autoPlay
-                  loop
-                  muted
-                  playsInline
-                  style={{ opacity: 0, willChange: "transform, opacity" }}
-                />
               </div>
 
               <div className="space-y-4">
