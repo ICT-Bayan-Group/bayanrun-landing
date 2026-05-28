@@ -1,3 +1,4 @@
+"use client";
 import { blogs } from "@/lib/constant";
 import Image from "next/image";
 import Link from "next/link";

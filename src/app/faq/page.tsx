@@ -6,7 +6,7 @@ import gsap from "gsap";
 const faqData = [
   {
     title: "Kapan BAYAN RUN 2025 akan diadakan?",
-    content: "Lomba akan diadakan pada Minggu, 12 Oktober 2025",
+    content: "Lomba akan diadakan pada Minggu, 10-11 Oktober 2025",
     category: "Event"
   },
   {
@@ -35,7 +35,7 @@ const faqData = [
     category: "Race Pack"
   },
   {
-    title: "Apakah boleh mengambil racepack pada hari lomba di tanggal 12 Oktober 2025?",
+    title: "Apakah boleh mengambil racepack pada hari lomba di tanggal 10-11 Oktober 2025?",
     content: "Tidak. Paket lomba (race pack) hanya dapat diambil pada acara pengambilan paket lomba yang diselenggarakan sebelum lomba.",
     category: "Race Pack"
   },
